@@ -1,0 +1,418 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LBInventoryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="catPerfil">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Perfil" Type="varchar" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="catTipoConexion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoConexion" Type="varchar" MaxLength="16" />
+        </EntityType>
+        <EntityType Name="ctrlConexion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoConexionId" Type="int" Nullable="false" />
+          <Property Name="Servidor" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="BaseDatos" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Puerto" Type="int" />
+          <Property Name="NumEmpresa" Type="int" Nullable="false" />
+          <Property Name="Empresa" Type="varchar" MaxLength="128" />
+          <Property Name="RFC" Type="varchar" MaxLength="18" />
+          <Property Name="Telefono" Type="varchar" MaxLength="64" />
+          <Property Name="Usuario" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Pass" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="SNActivo" Type="bit" Nullable="false" />
+          <Property Name="SNImportadora" Type="bit" Nullable="false" />
+          <Property Name="SNComercializadora" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ctrlSucursal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sucursal" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="256" />
+          <Property Name="LugarExpedicion" Type="varchar" MaxLength="128" />
+          <Property Name="Telefono" Type="varchar" MaxLength="16" />
+          <Property Name="CveAlmacen" Type="int" Nullable="false" />
+          <Property Name="Almacen" Type="varchar" MaxLength="128" />
+          <Property Name="SerieFactura" Type="varchar" MaxLength="32" />
+          <Property Name="SerieNCredito" Type="varchar" MaxLength="32" />
+          <Property Name="SerieNDescuento" Type="varchar" MaxLength="32" />
+          <Property Name="SeriePago" Type="varchar" MaxLength="32" />
+          <Property Name="SNActivo" Type="bit" Nullable="false" />
+          <Property Name="SNPenalizacion" Type="bit" Nullable="false" />
+          <Property Name="Penalizacion" Type="int" />
+          <Property Name="Leyenda" Type="varchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="ctrlUsuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="SucursalId" Type="int" Nullable="false" />
+          <Property Name="CveVendedor" Type="varchar" MaxLength="5" />
+          <Property Name="SNActivo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="relUsuarioPerfil">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsuarioId" Type="int" Nullable="false" />
+          <Property Name="PerfilId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ctrlConexion_catTipoConexion">
+          <End Role="catTipoConexion" Type="Self.catTipoConexion" Multiplicity="1" />
+          <End Role="ctrlConexion" Type="Self.ctrlConexion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catTipoConexion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ctrlConexion">
+              <PropertyRef Name="TipoConexionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctrlUsuario_ctrlSucursal">
+          <End Role="ctrlSucursal" Type="Self.ctrlSucursal" Multiplicity="1" />
+          <End Role="ctrlUsuario" Type="Self.ctrlUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ctrlSucursal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ctrlUsuario">
+              <PropertyRef Name="SucursalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_relUsuarioPerfil_catPerfil">
+          <End Role="catPerfil" Type="Self.catPerfil" Multiplicity="1" />
+          <End Role="relUsuarioPerfil" Type="Self.relUsuarioPerfil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catPerfil">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="relUsuarioPerfil">
+              <PropertyRef Name="PerfilId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_relUsuarioPerfil_ctrlUsuario">
+          <End Role="ctrlUsuario" Type="Self.ctrlUsuario" Multiplicity="1" />
+          <End Role="relUsuarioPerfil" Type="Self.relUsuarioPerfil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ctrlUsuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="relUsuarioPerfil">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LBInventoryModelStoreContainer">
+          <EntitySet Name="catPerfil" EntityType="Self.catPerfil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="catTipoConexion" EntityType="Self.catTipoConexion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ctrlConexion" EntityType="Self.ctrlConexion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ctrlSucursal" EntityType="Self.ctrlSucursal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ctrlUsuario" EntityType="Self.ctrlUsuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="relUsuarioPerfil" EntityType="Self.relUsuarioPerfil" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ctrlConexion_catTipoConexion" Association="Self.FK_ctrlConexion_catTipoConexion">
+            <End Role="catTipoConexion" EntitySet="catTipoConexion" />
+            <End Role="ctrlConexion" EntitySet="ctrlConexion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctrlUsuario_ctrlSucursal" Association="Self.FK_ctrlUsuario_ctrlSucursal">
+            <End Role="ctrlSucursal" EntitySet="ctrlSucursal" />
+            <End Role="ctrlUsuario" EntitySet="ctrlUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_relUsuarioPerfil_catPerfil" Association="Self.FK_relUsuarioPerfil_catPerfil">
+            <End Role="catPerfil" EntitySet="catPerfil" />
+            <End Role="relUsuarioPerfil" EntitySet="relUsuarioPerfil" />
+          </AssociationSet>
+          <AssociationSet Name="FK_relUsuarioPerfil_ctrlUsuario" Association="Self.FK_relUsuarioPerfil_ctrlUsuario">
+            <End Role="ctrlUsuario" EntitySet="ctrlUsuario" />
+            <End Role="relUsuarioPerfil" EntitySet="relUsuarioPerfil" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LBInventoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="LBInventoryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="catPerfil" EntityType="LBInventoryModel.catPerfil" />
+          <EntitySet Name="ctrlSucursal" EntityType="LBInventoryModel.ctrlSucursal" />
+          <EntitySet Name="ctrlUsuario" EntityType="LBInventoryModel.ctrlUsuario" />
+          <EntitySet Name="relUsuarioPerfil" EntityType="LBInventoryModel.relUsuarioPerfil" />
+          <AssociationSet Name="FK_relUsuarioPerfil_catPerfil" Association="LBInventoryModel.FK_relUsuarioPerfil_catPerfil">
+            <End Role="catPerfil" EntitySet="catPerfil" />
+            <End Role="relUsuarioPerfil" EntitySet="relUsuarioPerfil" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctrlUsuario_ctrlSucursal" Association="LBInventoryModel.FK_ctrlUsuario_ctrlSucursal">
+            <End Role="ctrlSucursal" EntitySet="ctrlSucursal" />
+            <End Role="ctrlUsuario" EntitySet="ctrlUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_relUsuarioPerfil_ctrlUsuario" Association="LBInventoryModel.FK_relUsuarioPerfil_ctrlUsuario">
+            <End Role="ctrlUsuario" EntitySet="ctrlUsuario" />
+            <End Role="relUsuarioPerfil" EntitySet="relUsuarioPerfil" />
+          </AssociationSet>
+          <EntitySet Name="catTipoConexion" EntityType="LBInventoryModel.catTipoConexion" />
+          <EntitySet Name="ctrlConexion" EntityType="LBInventoryModel.ctrlConexion" />
+          <AssociationSet Name="FK_ctrlConexion_catTipoConexion" Association="LBInventoryModel.FK_ctrlConexion_catTipoConexion">
+            <End Role="catTipoConexion" EntitySet="catTipoConexion" />
+            <End Role="ctrlConexion" EntitySet="ctrlConexion" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="catPerfil">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Perfil" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="relUsuarioPerfil" Relationship="LBInventoryModel.FK_relUsuarioPerfil_catPerfil" FromRole="catPerfil" ToRole="relUsuarioPerfil" />
+        </EntityType>
+        <EntityType Name="ctrlSucursal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sucursal" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="LugarExpedicion" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="CveAlmacen" Type="Int32" Nullable="false" />
+          <Property Name="Almacen" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="SerieFactura" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="SerieNCredito" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="SerieNDescuento" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="SeriePago" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="SNActivo" Type="Boolean" Nullable="false" />
+          <Property Name="SNPenalizacion" Type="Boolean" Nullable="false" />
+          <Property Name="Penalizacion" Type="Int32" />
+          <Property Name="Leyenda" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ctrlUsuario" Relationship="LBInventoryModel.FK_ctrlUsuario_ctrlSucursal" FromRole="ctrlSucursal" ToRole="ctrlUsuario" />
+        </EntityType>
+        <EntityType Name="ctrlUsuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="SucursalId" Type="Int32" Nullable="false" />
+          <Property Name="CveVendedor" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="SNActivo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ctrlSucursal" Relationship="LBInventoryModel.FK_ctrlUsuario_ctrlSucursal" FromRole="ctrlUsuario" ToRole="ctrlSucursal" />
+          <NavigationProperty Name="relUsuarioPerfil" Relationship="LBInventoryModel.FK_relUsuarioPerfil_ctrlUsuario" FromRole="ctrlUsuario" ToRole="relUsuarioPerfil" />
+        </EntityType>
+        <EntityType Name="relUsuarioPerfil">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioId" Type="Int32" Nullable="false" />
+          <Property Name="PerfilId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="catPerfil" Relationship="LBInventoryModel.FK_relUsuarioPerfil_catPerfil" FromRole="relUsuarioPerfil" ToRole="catPerfil" />
+          <NavigationProperty Name="ctrlUsuario" Relationship="LBInventoryModel.FK_relUsuarioPerfil_ctrlUsuario" FromRole="relUsuarioPerfil" ToRole="ctrlUsuario" />
+        </EntityType>
+        <Association Name="FK_relUsuarioPerfil_catPerfil">
+          <End Type="LBInventoryModel.catPerfil" Role="catPerfil" Multiplicity="1" />
+          <End Type="LBInventoryModel.relUsuarioPerfil" Role="relUsuarioPerfil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catPerfil">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="relUsuarioPerfil">
+              <PropertyRef Name="PerfilId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctrlUsuario_ctrlSucursal">
+          <End Type="LBInventoryModel.ctrlSucursal" Role="ctrlSucursal" Multiplicity="1" />
+          <End Type="LBInventoryModel.ctrlUsuario" Role="ctrlUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ctrlSucursal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ctrlUsuario">
+              <PropertyRef Name="SucursalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_relUsuarioPerfil_ctrlUsuario">
+          <End Type="LBInventoryModel.ctrlUsuario" Role="ctrlUsuario" Multiplicity="1" />
+          <End Type="LBInventoryModel.relUsuarioPerfil" Role="relUsuarioPerfil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ctrlUsuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="relUsuarioPerfil">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="catTipoConexion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoConexion" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ctrlConexion" Relationship="LBInventoryModel.FK_ctrlConexion_catTipoConexion" FromRole="catTipoConexion" ToRole="ctrlConexion" />
+        </EntityType>
+        <EntityType Name="ctrlConexion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoConexionId" Type="Int32" Nullable="false" />
+          <Property Name="Servidor" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="BaseDatos" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Puerto" Type="Int32" />
+          <Property Name="NumEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="Empresa" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="RFC" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Pass" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="SNActivo" Type="Boolean" Nullable="false" />
+          <Property Name="SNImportadora" Type="Boolean" Nullable="false" />
+          <Property Name="SNComercializadora" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="catTipoConexion" Relationship="LBInventoryModel.FK_ctrlConexion_catTipoConexion" FromRole="ctrlConexion" ToRole="catTipoConexion" />
+        </EntityType>
+        <Association Name="FK_ctrlConexion_catTipoConexion">
+          <End Type="LBInventoryModel.catTipoConexion" Role="catTipoConexion" Multiplicity="1" />
+          <End Type="LBInventoryModel.ctrlConexion" Role="ctrlConexion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catTipoConexion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ctrlConexion">
+              <PropertyRef Name="TipoConexionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LBInventoryModelStoreContainer" CdmEntityContainer="LBInventoryEntities">
+          <EntitySetMapping Name="catPerfil">
+            <EntityTypeMapping TypeName="LBInventoryModel.catPerfil">
+              <MappingFragment StoreEntitySet="catPerfil">
+                <ScalarProperty Name="Perfil" ColumnName="Perfil" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ctrlSucursal">
+            <EntityTypeMapping TypeName="LBInventoryModel.ctrlSucursal">
+              <MappingFragment StoreEntitySet="ctrlSucursal">
+                <ScalarProperty Name="Leyenda" ColumnName="Leyenda" />
+                <ScalarProperty Name="Penalizacion" ColumnName="Penalizacion" />
+                <ScalarProperty Name="SNPenalizacion" ColumnName="SNPenalizacion" />
+                <ScalarProperty Name="SNActivo" ColumnName="SNActivo" />
+                <ScalarProperty Name="SeriePago" ColumnName="SeriePago" />
+                <ScalarProperty Name="SerieNDescuento" ColumnName="SerieNDescuento" />
+                <ScalarProperty Name="SerieNCredito" ColumnName="SerieNCredito" />
+                <ScalarProperty Name="SerieFactura" ColumnName="SerieFactura" />
+                <ScalarProperty Name="Almacen" ColumnName="Almacen" />
+                <ScalarProperty Name="CveAlmacen" ColumnName="CveAlmacen" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="LugarExpedicion" ColumnName="LugarExpedicion" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Sucursal" ColumnName="Sucursal" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ctrlUsuario">
+            <EntityTypeMapping TypeName="LBInventoryModel.ctrlUsuario">
+              <MappingFragment StoreEntitySet="ctrlUsuario">
+                <ScalarProperty Name="SNActivo" ColumnName="SNActivo" />
+                <ScalarProperty Name="CveVendedor" ColumnName="CveVendedor" />
+                <ScalarProperty Name="SucursalId" ColumnName="SucursalId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="relUsuarioPerfil">
+            <EntityTypeMapping TypeName="LBInventoryModel.relUsuarioPerfil">
+              <MappingFragment StoreEntitySet="relUsuarioPerfil">
+                <ScalarProperty Name="PerfilId" ColumnName="PerfilId" />
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="catTipoConexion">
+            <EntityTypeMapping TypeName="LBInventoryModel.catTipoConexion">
+              <MappingFragment StoreEntitySet="catTipoConexion">
+                <ScalarProperty Name="TipoConexion" ColumnName="TipoConexion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ctrlConexion">
+            <EntityTypeMapping TypeName="LBInventoryModel.ctrlConexion">
+              <MappingFragment StoreEntitySet="ctrlConexion">
+                <ScalarProperty Name="SNComercializadora" ColumnName="SNComercializadora" />
+                <ScalarProperty Name="SNImportadora" ColumnName="SNImportadora" />
+                <ScalarProperty Name="SNActivo" ColumnName="SNActivo" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="RFC" ColumnName="RFC" />
+                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+                <ScalarProperty Name="NumEmpresa" ColumnName="NumEmpresa" />
+                <ScalarProperty Name="Puerto" ColumnName="Puerto" />
+                <ScalarProperty Name="BaseDatos" ColumnName="BaseDatos" />
+                <ScalarProperty Name="Servidor" ColumnName="Servidor" />
+                <ScalarProperty Name="TipoConexionId" ColumnName="TipoConexionId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
