@@ -225,9 +225,11 @@
   <data name="btnCompras.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAACVSURBVFhH7Y5BCoAwDAT7Oy99jP+/KIEtFLJCNXWtkMBchk2yZdvrp1CphEolVCqhUgmVx0vD
-        fjlhID992C8nDOTpwhNwLgvECkAND9vtXcMJA/m1CkTAuSwQKwA1PGy3dw0nDOTXKhAB57JArACUmz5z
-        BaI/LxAB57LA/QKzh/1ywkB++rBfTqihUgmVSqhUQqWOWk7HRZpX2y3JxwAAAABJRU5ErkJggg==
+        YQUAAAD2SURBVFhH7ZFdCsIwEIR7D/VNvIovPYy3Eim+6a0U9ARxt5liyU6kf6y1uPCB+ZxJFi32h/Kr
+        UOkJlZ5Q6QmVnlCZEiYadrcRDPRHD7vbCAb69IIuoP5fYEEL4GjO6eTybYxgoD+fBfqC+oIWwNGc08nl
+        2xjBQH8+C/QF9R9eYCx4v/sCyA+e3H2pV4xQkB88uftSrxihIE8Ln0BtkgWesRLW7Psckr/H2rsnnzdR
+        hUc722CEIuFz7ISL0HkJyR7rFnrgqkKmYh0jFAnvhFtdm2b0l9myt4xokMJKOAnN3zFktFsJ9HGFSk+o
+        9IRKT6j0hEo/yuIF+haXhm6qUoIAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="pictureBox3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
