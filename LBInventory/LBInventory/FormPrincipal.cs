@@ -30,7 +30,7 @@ namespace LBInventory
 
         private void Configuracion_Click(object sender, EventArgs e)
         {
-            AbrirFormEnPanel<Configuracion>();
+            AbrirFormEnPanel<FormConfiguracion>();
         }
 
         //METODO PARA ABRIR FORM DENTRO DE PANEL-----------------------------------------------------

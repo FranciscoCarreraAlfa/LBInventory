@@ -12,9 +12,9 @@ using Datos;
 
 namespace LBInventory
 {
-    public partial class Configuracion : Form
+    public partial class FormConfiguracion : Form
     {
-        public Configuracion()
+        public FormConfiguracion()
         {
             InitializeComponent();
         }
