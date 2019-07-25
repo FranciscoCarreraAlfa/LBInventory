@@ -32,6 +32,11 @@ namespace Negocio
             baseDatos = new BaseDatos(ObtenerConexion(), numEmpresa);
         }
 
+        public RNConexion(int numEmpresa)
+        {
+            baseDatos = new BaseDatos(ObtenerConexion(), numEmpresa);
+        }
+
         protected DbConnection ObtenerConexion()
         {
 
@@ -85,7 +90,7 @@ namespace Negocio
                 return null;
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return null;
                 throw;

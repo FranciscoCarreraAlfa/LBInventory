@@ -105,6 +105,11 @@ namespace LBInventory
 
         }
 
+        private void BtnCompras_Click(object sender, EventArgs e)
+        {
+            AbrirFormEnPanel<FormCompras>();
+        }
+
         private void Minimizar_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
