@@ -1,6 +1,6 @@
 ﻿namespace LBInventory
 {
-    partial class FormPartidas
+    partial class FormOrdenes
     {
         /// <summary>
         /// Required designer variable.
@@ -28,27 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPartidas));
-            this.dataGridPartida = new System.Windows.Forms.DataGridView();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormOrdenes));
+            this.dataGridOrdenes = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblPartida = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.lblPartida = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridPartida)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridOrdenes)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridPartida
+            // dataGridOrdenes
             // 
-            this.dataGridPartida.AccessibleRole = System.Windows.Forms.AccessibleRole.Text;
-            this.dataGridPartida.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridPartida.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridPartida.GridColor = System.Drawing.Color.Gray;
-            this.dataGridPartida.Location = new System.Drawing.Point(100, 100);
-            this.dataGridPartida.Name = "dataGridPartida";
-            this.dataGridPartida.Size = new System.Drawing.Size(600, 300);
-            this.dataGridPartida.TabIndex = 0;
+            this.dataGridOrdenes.AccessibleRole = System.Windows.Forms.AccessibleRole.Text;
+            this.dataGridOrdenes.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridOrdenes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridOrdenes.GridColor = System.Drawing.Color.Gray;
+            this.dataGridOrdenes.Location = new System.Drawing.Point(100, 100);
+            this.dataGridOrdenes.Name = "dataGridOrdenes";
+            this.dataGridOrdenes.Size = new System.Drawing.Size(600, 240);
+            this.dataGridOrdenes.TabIndex = 0;
+            this.dataGridOrdenes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridPartida_CellClick);
             // 
             // panel1
             // 
@@ -60,6 +61,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(800, 30);
             this.panel1.TabIndex = 1;
+            // 
+            // lblPartida
+            // 
+            this.lblPartida.AutoSize = true;
+            this.lblPartida.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPartida.ForeColor = System.Drawing.Color.White;
+            this.lblPartida.Location = new System.Drawing.Point(12, 8);
+            this.lblPartida.Name = "lblPartida";
+            this.lblPartida.Size = new System.Drawing.Size(180, 22);
+            this.lblPartida.TabIndex = 3;
+            this.lblPartida.Text = "Ordenes de Compra";
             // 
             // pictureBox1
             // 
@@ -80,32 +92,21 @@
             this.panel2.Size = new System.Drawing.Size(800, 450);
             this.panel2.TabIndex = 2;
             // 
-            // lblPartida
-            // 
-            this.lblPartida.AutoSize = true;
-            this.lblPartida.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPartida.ForeColor = System.Drawing.Color.White;
-            this.lblPartida.Location = new System.Drawing.Point(12, 8);
-            this.lblPartida.Name = "lblPartida";
-            this.lblPartida.Size = new System.Drawing.Size(90, 22);
-            this.lblPartida.TabIndex = 3;
-            this.lblPartida.Text = "Partidas";
-            // 
-            // FormPartidas
+            // FormOrdenes
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.dataGridPartida);
+            this.Controls.Add(this.dataGridOrdenes);
             this.Controls.Add(this.panel2);
             this.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FormPartidas";
+            this.Name = "FormOrdenes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormPartidas";
             this.Load += new System.EventHandler(this.FormPartidas_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridPartida)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridOrdenes)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -115,7 +116,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridPartida;
+        private System.Windows.Forms.DataGridView dataGridOrdenes;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel2;

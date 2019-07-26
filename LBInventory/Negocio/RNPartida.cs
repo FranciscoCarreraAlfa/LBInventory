@@ -19,7 +19,7 @@ namespace Negocio
                     RNConexion conexion = new RNConexion(configuracion.NumEmpresa);
                     conexion.baseDatos.AbrirConexion();
                     conexion.baseDatos.AgregarParametro("@cve_doc", cve_doc);
-                    dataGridCompras.DataSource = conexion.baseDatos.ObtenerTabla("select p.CVE_DOC, p.NUM_PAR,pr.DESCR ,p.CANT, p.PXR, p.PREC, p.COST, p.DESCU, p.NUM_ALM, p.TOT_PARTIDA  from PAR_COMPO{0} as P inner join INVE{0} pr on pr.CVE_ART = p.CVE_ART  where p.CVE_DOC = @cve_doc; ");
+                    dataGridCompras.DataSource = conexion.baseDatos.ObtenerTabla("select p.NUM_PAR,pr.DESCR ,p.CANT, p.PXR, p.PREC, p.COST, p.DESCU, p.NUM_ALM, p.TOT_PARTIDA  from PAR_COMPO{0} as P inner join INVE{0} pr on pr.CVE_ART = p.CVE_ART  where p.CVE_DOC = @cve_doc; ");
                 }
                 else if (tipo_doc == "Venta")
                 {
@@ -27,7 +27,7 @@ namespace Negocio
                     RNConexion conexion = new RNConexion(configuracion.NumEmpresa);
                     conexion.baseDatos.AbrirConexion();
                     conexion.baseDatos.AgregarParametro("@cve_doc", cve_doc);
-                    dataGridCompras.DataSource = conexion.baseDatos.ObtenerTabla("select f.CVE_DOC, f.NUM_PAR , pr.DESCR,f.CANT,f.PXS,f.PREC, f.COST, f.UNI_VENTA, f.TOT_PARTIDA from PAR_FACTP{0} f inner join INVE{0} pr on pr.CVE_ART = f.CVE_ART where p.CVE_DOC = @cve_doc; ;");
+                    dataGridCompras.DataSource = conexion.baseDatos.ObtenerTabla("select f.NUM_PAR , pr.DESCR,f.CANT,f.PXS,f.PREC, f.COST, f.UNI_VENTA, f.TOT_PARTIDA from PAR_FACTP{0} f inner join INVE{0} pr on pr.CVE_ART = f.CVE_ART where p.CVE_DOC = @cve_doc; ;");
                 }
                     
 

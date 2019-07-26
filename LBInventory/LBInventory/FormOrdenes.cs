@@ -11,23 +11,30 @@ using System.Windows.Forms;
 
 namespace LBInventory
 {
-    public partial class FormPartidas : Form
+    public partial class FormOrdenes : Form
     {
-        public FormPartidas()
+        public delegate void EnviarOrden(string cve);
+        public event EnviarOrden Enviar;
+
+        public FormOrdenes()
         {
             InitializeComponent();
         }
-        public string cve_doc;
-        public string tipo_doc;
 
         private void FormPartidas_Load(object sender, EventArgs e)
         {
-            RNPartida.ObtenerPartidas(dataGridPartida,cve_doc, tipo_doc);
-            lblPartida.Text = "Partidas "+tipo_doc+" documento "+cve_doc;
+            RNCompra.ObtenerCompras(dataGridOrdenes);
+            lblPartida.Text = "Compras";
         }
 
         private void PictureBox1_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
+
+        private void DataGridPartida_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Enviar(dataGridOrdenes.CurrentCell.Value.ToString());
             this.Close();
         }
     }

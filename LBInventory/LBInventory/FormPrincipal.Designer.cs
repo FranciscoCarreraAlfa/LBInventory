@@ -92,11 +92,12 @@
             this.Configuracion.ForeColor = System.Drawing.Color.White;
             this.Configuracion.Image = ((System.Drawing.Image)(resources.GetObject("Configuracion.Image")));
             this.Configuracion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Configuracion.Location = new System.Drawing.Point(0, 300);
+            this.Configuracion.Location = new System.Drawing.Point(0, 309);
             this.Configuracion.Name = "Configuracion";
             this.Configuracion.Size = new System.Drawing.Size(250, 50);
             this.Configuracion.TabIndex = 4;
             this.Configuracion.Text = "Configuración";
+            this.Configuracion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.Configuracion.UseVisualStyleBackColor = true;
             this.Configuracion.Click += new System.EventHandler(this.Configuracion_Click);
             // 
@@ -124,7 +125,7 @@
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(0, 250);
+            this.button4.Location = new System.Drawing.Point(0, 259);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(250, 50);
             this.button4.TabIndex = 3;
@@ -138,7 +139,7 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(0, 200);
+            this.button3.Location = new System.Drawing.Point(0, 209);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(250, 50);
             this.button3.TabIndex = 2;
@@ -152,7 +153,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(0, 150);
+            this.button2.Location = new System.Drawing.Point(0, 159);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(250, 50);
             this.button2.TabIndex = 1;
@@ -170,9 +171,11 @@
             this.btnCompras.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCompras.Location = new System.Drawing.Point(0, 100);
             this.btnCompras.Name = "btnCompras";
-            this.btnCompras.Size = new System.Drawing.Size(250, 50);
+            this.btnCompras.Size = new System.Drawing.Size(250, 60);
             this.btnCompras.TabIndex = 0;
-            this.btnCompras.Text = "Compras";
+            this.btnCompras.Text = "Recepción de  Mercancia";
+            this.btnCompras.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCompras.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCompras.UseVisualStyleBackColor = true;
             this.btnCompras.Click += new System.EventHandler(this.BtnCompras_Click);
             // 
