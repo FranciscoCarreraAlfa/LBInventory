@@ -35,7 +35,7 @@ namespace Negocio
             }
         }
 
-        public static RNCompra ObtenerCompra(string cve)
+        public static RNCompra ObtenerCompra(string cve, DataGridView dataGridCompras)
         {
             RNCompra compra = new RNCompra();
             try
@@ -59,11 +59,11 @@ namespace Negocio
                     compra.STATUS = row["STATUS"].ToString();
                     compra.SU_REFER = row["SU_REFER"].ToString();
                 }
-                
+
+                dataGridCompras.DataSource = RNPartidaCompra.ObtenerPartidas(cve);
 
 
 
-                
             }
             catch (Exception e)
             {

@@ -51,8 +51,7 @@ namespace LBInventory
 
         private void TxtOrdenCompra_TextChanged(object sender, EventArgs e)
         {
-            RNPartida.ObtenerPartidas(dataGridCompras, txtOrdenCompra.Text, "Compra");
-            RNCompra compra = RNCompra.ObtenerCompra(txtOrdenCompra.Text);
+            RNCompra compra = RNCompra.ObtenerCompra(txtOrdenCompra.Text, dataGridCompras);
             lblNombre.Text ="Nombre Proveedor: "+ compra.NOMBRE;
             lblOrden.Text = "Orden de Compra: "+compra.CVE_DOC;
             lblRFC.Text = "Importe Total: "+compra.IMPORTE.ToString();

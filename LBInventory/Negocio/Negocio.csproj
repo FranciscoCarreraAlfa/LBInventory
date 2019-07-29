@@ -73,7 +73,7 @@
     <Compile Include="RNCompra.cs" />
     <Compile Include="RNConexion.cs" />
     <Compile Include="RNConfiguracion.cs" />
-    <Compile Include="RNPartida.cs" />
+    <Compile Include="RNPartidaCompra.cs" />
     <Compile Include="RNPerfil.cs" />
     <Compile Include="RNTipoconexion.cs" />
     <Compile Include="RNUsuario.cs" />
