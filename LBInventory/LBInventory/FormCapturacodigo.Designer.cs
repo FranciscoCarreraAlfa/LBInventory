@@ -1,6 +1,6 @@
 ﻿namespace LBInventory
 {
-    partial class FormOrdenes
+    partial class FormCapturacodigo
     {
         /// <summary>
         /// Required designer variable.
@@ -28,28 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormOrdenes));
-            this.dataGridOrdenes = new System.Windows.Forms.DataGridView();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCapturacodigo));
+            this.listCodigos = new System.Windows.Forms.ListBox();
+            this.txtCaptura = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblPartida = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnValidar = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridOrdenes)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridOrdenes
+            // listCodigos
             // 
-            this.dataGridOrdenes.AccessibleRole = System.Windows.Forms.AccessibleRole.Text;
-            this.dataGridOrdenes.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridOrdenes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridOrdenes.GridColor = System.Drawing.Color.Gray;
-            this.dataGridOrdenes.Location = new System.Drawing.Point(100, 100);
-            this.dataGridOrdenes.Name = "dataGridOrdenes";
-            this.dataGridOrdenes.Size = new System.Drawing.Size(600, 240);
-            this.dataGridOrdenes.TabIndex = 0;
-            this.dataGridOrdenes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridPartida_CellClick);
+            this.listCodigos.FormattingEnabled = true;
+            this.listCodigos.ItemHeight = 19;
+            this.listCodigos.Location = new System.Drawing.Point(148, 138);
+            this.listCodigos.Name = "listCodigos";
+            this.listCodigos.Size = new System.Drawing.Size(464, 213);
+            this.listCodigos.TabIndex = 0;
+            // 
+            // txtCaptura
+            // 
+            this.txtCaptura.Location = new System.Drawing.Point(148, 75);
+            this.txtCaptura.Name = "txtCaptura";
+            this.txtCaptura.Size = new System.Drawing.Size(464, 26);
+            this.txtCaptura.TabIndex = 1;
+            this.txtCaptura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox1_KeyPress);
             // 
             // panel1
             // 
@@ -60,7 +66,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(800, 30);
-            this.panel1.TabIndex = 1;
+            this.panel1.TabIndex = 2;
             // 
             // lblPartida
             // 
@@ -69,9 +75,9 @@
             this.lblPartida.ForeColor = System.Drawing.Color.White;
             this.lblPartida.Location = new System.Drawing.Point(12, 8);
             this.lblPartida.Name = "lblPartida";
-            this.lblPartida.Size = new System.Drawing.Size(180, 22);
+            this.lblPartida.Size = new System.Drawing.Size(190, 22);
             this.lblPartida.TabIndex = 3;
-            this.lblPartida.Text = "Ordenes de Compra";
+            this.lblPartida.Text = "Captura de codigos";
             // 
             // pictureBox1
             // 
@@ -83,6 +89,17 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
             // 
+            // btnValidar
+            // 
+            this.btnValidar.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnValidar.Location = new System.Drawing.Point(608, 405);
+            this.btnValidar.Name = "btnValidar";
+            this.btnValidar.Size = new System.Drawing.Size(192, 44);
+            this.btnValidar.TabIndex = 3;
+            this.btnValidar.Text = "Validar Codigos";
+            this.btnValidar.UseVisualStyleBackColor = false;
+            this.btnValidar.Click += new System.EventHandler(this.BtnValidar_Click);
+            // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -90,39 +107,43 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(800, 450);
-            this.panel2.TabIndex = 2;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel2_Paint);
+            this.panel2.TabIndex = 4;
             // 
-            // FormOrdenes
+            // FormCapturacodigo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnValidar);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.dataGridOrdenes);
+            this.Controls.Add(this.txtCaptura);
+            this.Controls.Add(this.listCodigos);
             this.Controls.Add(this.panel2);
             this.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FormOrdenes";
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "FormCapturacodigo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormPartidas";
-            this.Load += new System.EventHandler(this.FormPartidas_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridOrdenes)).EndInit();
+            this.Text = "FormCapturacodigo";
+            this.Load += new System.EventHandler(this.FormCapturacodigo_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridOrdenes;
+        private System.Windows.Forms.ListBox listCodigos;
+        private System.Windows.Forms.TextBox txtCaptura;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lblPartida;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnValidar;
+        private System.Windows.Forms.Panel panel2;
     }
 }

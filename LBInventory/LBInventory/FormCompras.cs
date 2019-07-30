@@ -38,6 +38,7 @@ namespace LBInventory
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
+            // se crea un nuevo form para el form modal
             FormOrdenes ordenes = new FormOrdenes() ;
             ordenes.Enviar += new FormOrdenes.EnviarOrden(Ordenes_Enviar);
             ordenes.Owner = this;
@@ -55,6 +56,27 @@ namespace LBInventory
             lblNombre.Text ="Nombre Proveedor: "+ compra.NOMBRE;
             lblOrden.Text = "Orden de Compra: "+compra.CVE_DOC;
             lblRFC.Text = "Importe Total: "+compra.IMPORTE.ToString();
+        }
+
+        private void DataGridCompras_KeyPress(object sender, KeyPressEventArgs e)
+        {
+        }
+
+        private void CapturarCodigos_Click(object sender, EventArgs e)
+        {
+            FormCapturacodigo captura = new FormCapturacodigo() { DataGrid = dataGridCompras };
+            captura.Enviar += new FormCapturacodigo.ActualizarPartida(Partidas_Enviar); 
+            captura.Owner = this;
+            captura.ShowDialog();
+        }
+        private void Partidas_Enviar(DataGridView data)
+        {
+            dataGridCompras = data;
+        }
+
+        private void DataGridCompras_DataSourceChanged(object sender, EventArgs e)
+        {
+            btnCapturarCodigo.Enabled = true;
         }
     }
 }

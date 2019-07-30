@@ -19,11 +19,6 @@ namespace LBInventory
             InitializeComponent();
         }
 
-        private void PictureBox1_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void Configuracion_Load(object sender, EventArgs e)
         {
             var configuraciones = RNConfiguracion.Listar();
@@ -91,6 +86,11 @@ namespace LBInventory
             {
                 
             }
+        }
+
+        private void PictureBox1_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

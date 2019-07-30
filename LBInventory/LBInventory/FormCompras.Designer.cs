@@ -38,6 +38,7 @@
             this.lblNombre = new System.Windows.Forms.Label();
             this.lblRFC = new System.Windows.Forms.Label();
             this.dataGridCompras = new System.Windows.Forms.DataGridView();
+            this.btnCapturarCodigo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridCompras)).BeginInit();
             this.SuspendLayout();
@@ -133,10 +134,26 @@
             this.dataGridCompras.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridCompras.BackgroundColor = System.Drawing.Color.White;
             this.dataGridCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridCompras.Location = new System.Drawing.Point(204, 231);
+            this.dataGridCompras.Location = new System.Drawing.Point(94, 231);
             this.dataGridCompras.Name = "dataGridCompras";
-            this.dataGridCompras.Size = new System.Drawing.Size(831, 323);
+            this.dataGridCompras.Size = new System.Drawing.Size(990, 320);
             this.dataGridCompras.TabIndex = 11;
+            this.dataGridCompras.DataSourceChanged += new System.EventHandler(this.DataGridCompras_DataSourceChanged);
+            this.dataGridCompras.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DataGridCompras_KeyPress);
+            // 
+            // btnCapturarCodigo
+            // 
+            this.btnCapturarCodigo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCapturarCodigo.Enabled = false;
+            this.btnCapturarCodigo.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCapturarCodigo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCapturarCodigo.Location = new System.Drawing.Point(950, 599);
+            this.btnCapturarCodigo.Name = "btnCapturarCodigo";
+            this.btnCapturarCodigo.Size = new System.Drawing.Size(250, 59);
+            this.btnCapturarCodigo.TabIndex = 12;
+            this.btnCapturarCodigo.Text = "Capturar Codigos";
+            this.btnCapturarCodigo.UseVisualStyleBackColor = false;
+            this.btnCapturarCodigo.Click += new System.EventHandler(this.CapturarCodigos_Click);
             // 
             // FormCompras
             // 
@@ -144,6 +161,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1200, 658);
+            this.Controls.Add(this.btnCapturarCodigo);
             this.Controls.Add(this.dataGridCompras);
             this.Controls.Add(this.lblRFC);
             this.Controls.Add(this.lblNombre);
@@ -179,5 +197,6 @@
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.Label lblRFC;
         private System.Windows.Forms.DataGridView dataGridCompras;
+        private System.Windows.Forms.Button btnCapturarCodigo;
     }
 }

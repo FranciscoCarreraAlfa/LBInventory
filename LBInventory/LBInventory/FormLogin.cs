@@ -55,5 +55,10 @@ namespace LBInventory
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
+
+        private void FormLogin_Load(object sender, EventArgs e)
+        {
+            button1.Focus();
+        }
     }
 }

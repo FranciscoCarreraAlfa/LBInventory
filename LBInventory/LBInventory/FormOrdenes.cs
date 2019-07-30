@@ -37,5 +37,10 @@ namespace LBInventory
             Enviar(dataGridOrdenes.CurrentCell.Value.ToString());
             this.Close();
         }
+
+        private void Panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

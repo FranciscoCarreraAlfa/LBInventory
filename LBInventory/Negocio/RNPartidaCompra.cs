@@ -22,7 +22,7 @@ namespace Negocio
         public string digito_Control { get; set; }
         public int contador { get; set; }
         public DateTime fecha_Caducidad { get; set; }
-        public int num_Lote { get; set; }
+        public string num_Lote { get; set; }
 
         public static List<RNPartidaCompra> ObtenerPartidas( string cve_doc )
         {
@@ -47,7 +47,7 @@ namespace Negocio
                 //    dataGridCompras.DataSource = conexion.baseDatos.ObtenerTabla("select f.NUM_PAR ,f.CVE_ART ,pr.DESCR,f.CANT,f.PREC, f.TOT_PARTIDA from PAR_FACTP{0} f inner join INVE{0} pr on pr.CVE_ART = f.CVE_ART where p.CVE_DOC = @cve_doc; ;");
                 //}
                
-                var configuracion = RNConfiguracion.Listar().Where(x => x.SNImportadora).FirstOrDefault();
+                var configuracion = RNConfiguracion.Listar().Where(x => x.SNComercializadora).FirstOrDefault();
                 RNConexion conexion = new RNConexion(configuracion.NumEmpresa);
                 conexion.baseDatos.AbrirConexion();
                 conexion.baseDatos.AgregarParametro("@cve_doc", cve_doc);

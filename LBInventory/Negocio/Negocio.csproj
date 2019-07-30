@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Parametros.cs" />
+    <Compile Include="RNCodigo.cs" />
     <Compile Include="RNCompra.cs" />
     <Compile Include="RNConexion.cs" />
     <Compile Include="RNConfiguracion.cs" />
