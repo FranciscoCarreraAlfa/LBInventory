@@ -39,6 +39,8 @@
             this.lblRFC = new System.Windows.Forms.Label();
             this.dataGridCompras = new System.Windows.Forms.DataGridView();
             this.btnCapturarCodigo = new System.Windows.Forms.Button();
+            this.btnGenTRecepcion = new System.Windows.Forms.Button();
+            this.btnReporte = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridCompras)).BeginInit();
             this.SuspendLayout();
@@ -69,6 +71,7 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(322, 70);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(153, 19);
@@ -132,6 +135,7 @@
             // dataGridCompras
             // 
             this.dataGridCompras.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridCompras.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridCompras.BackgroundColor = System.Drawing.Color.White;
             this.dataGridCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridCompras.Location = new System.Drawing.Point(94, 231);
@@ -146,14 +150,44 @@
             this.btnCapturarCodigo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCapturarCodigo.Enabled = false;
             this.btnCapturarCodigo.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCapturarCodigo.Image = ((System.Drawing.Image)(resources.GetObject("btnCapturarCodigo.Image")));
             this.btnCapturarCodigo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCapturarCodigo.Location = new System.Drawing.Point(950, 599);
+            this.btnCapturarCodigo.Location = new System.Drawing.Point(950, 598);
             this.btnCapturarCodigo.Name = "btnCapturarCodigo";
-            this.btnCapturarCodigo.Size = new System.Drawing.Size(250, 59);
+            this.btnCapturarCodigo.Size = new System.Drawing.Size(250, 60);
             this.btnCapturarCodigo.TabIndex = 12;
             this.btnCapturarCodigo.Text = "Capturar Codigos";
             this.btnCapturarCodigo.UseVisualStyleBackColor = false;
             this.btnCapturarCodigo.Click += new System.EventHandler(this.CapturarCodigos_Click);
+            // 
+            // btnGenTRecepcion
+            // 
+            this.btnGenTRecepcion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGenTRecepcion.Enabled = false;
+            this.btnGenTRecepcion.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenTRecepcion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGenTRecepcion.Location = new System.Drawing.Point(697, 598);
+            this.btnGenTRecepcion.Name = "btnGenTRecepcion";
+            this.btnGenTRecepcion.Size = new System.Drawing.Size(250, 60);
+            this.btnGenTRecepcion.TabIndex = 13;
+            this.btnGenTRecepcion.Text = "Generar recepción";
+            this.btnGenTRecepcion.UseVisualStyleBackColor = false;
+            this.btnGenTRecepcion.Click += new System.EventHandler(this.BtnGenTRecepcion_Click);
+            // 
+            // btnReporte
+            // 
+            this.btnReporte.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReporte.Enabled = false;
+            this.btnReporte.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReporte.Image = ((System.Drawing.Image)(resources.GetObject("btnReporte.Image")));
+            this.btnReporte.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReporte.Location = new System.Drawing.Point(444, 598);
+            this.btnReporte.Name = "btnReporte";
+            this.btnReporte.Size = new System.Drawing.Size(250, 60);
+            this.btnReporte.TabIndex = 14;
+            this.btnReporte.Text = "Generar Reporte";
+            this.btnReporte.UseVisualStyleBackColor = false;
+            this.btnReporte.Click += new System.EventHandler(this.BtnReporte_Click);
             // 
             // FormCompras
             // 
@@ -161,6 +195,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1200, 658);
+            this.Controls.Add(this.btnReporte);
+            this.Controls.Add(this.btnGenTRecepcion);
             this.Controls.Add(this.btnCapturarCodigo);
             this.Controls.Add(this.dataGridCompras);
             this.Controls.Add(this.lblRFC);
@@ -198,5 +234,7 @@
         private System.Windows.Forms.Label lblRFC;
         private System.Windows.Forms.DataGridView dataGridCompras;
         private System.Windows.Forms.Button btnCapturarCodigo;
+        private System.Windows.Forms.Button btnGenTRecepcion;
+        private System.Windows.Forms.Button btnReporte;
     }
 }

@@ -25,7 +25,7 @@ namespace Negocio
                 var configuracion = RNConfiguracion.Listar().Where(x=> x.SNComercializadora).FirstOrDefault();
                 RNConexion conexion = new RNConexion(configuracion.NumEmpresa);
                 conexion.baseDatos.AbrirConexion();
-                dataGridCompras.DataSource=conexion.baseDatos.ObtenerTabla("select c.CVE_DOC,p.CLAVE as Cve_Proveedor, p.NOMBRE as Nom_Proveedor , c.STATUS, c.SU_REFER, c.IMPORTE, m.DESCR as MONEDA "
+                dataGridCompras.DataSource=conexion.baseDatos.ObtenerTabla("select c.CVE_DOC,p.CLAVE as Cve_Proveedor, p.NOMBRE as Nom_Proveedor ,  c.IMPORTE , m.DESCR as MONEDA"
                     + " from compo{0} as c inner join  PROV{0} p on p.CLAVE = c.CVE_CLPV inner join MONED{0} m on m.NUM_MONED = c.NUM_MONED "
                     + " where c.STATUS <> 'C' and(c.TIP_DOC_SIG is null or c.TIP_DOC_SIG = ''); ");
             }
@@ -45,7 +45,7 @@ namespace Negocio
                 RNConexion conexion = new RNConexion(configuracion.NumEmpresa);
                 conexion.baseDatos.AbrirConexion();
                 conexion.baseDatos.AgregarParametro("@cve",cve);
-                var result = conexion.baseDatos.ObtenerTabla("select c.CVE_DOC,p.CLAVE , p.NOMBRE , c.STATUS, c.SU_REFER, c.IMPORTE, m.DESCR as MONEDA "
+                var result = conexion.baseDatos.ObtenerTabla("select c.CVE_DOC,p.CLAVE , p.NOMBRE ,c.IMPORTE, m.DESCR as MONEDA "
                     + " from compo{0} as c inner join  PROV{0} p on p.CLAVE = c.CVE_CLPV inner join MONED{0} m on m.NUM_MONED = c.NUM_MONED "
                     + " where c.CVE_DOC = @cve; ");
 
@@ -56,13 +56,14 @@ namespace Negocio
                     compra.IMPORTE =Convert.ToDecimal( row["IMPORTE"].ToString());
                     compra.MONEDA = row["MONEDA"].ToString();
                     compra.NOMBRE = row["NOMBRE"].ToString();
-                    compra.STATUS = row["STATUS"].ToString();
-                    compra.SU_REFER = row["SU_REFER"].ToString();
                 }
 
+                for (int i= dataGridCompras.Columns.Count-1; i >7 ; i--)
+                {
+                    if (i > 7)
+                        dataGridCompras.Columns.Remove(dataGridCompras.Columns[i]); 
+                }
                 dataGridCompras.DataSource = RNPartidaCompra.ObtenerPartidas(cve);
-
-
 
             }
             catch (Exception e)

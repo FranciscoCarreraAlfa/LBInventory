@@ -13,12 +13,22 @@ namespace LBInventory
 {
     public partial class FormCapturacodigo : Form
     {
-        public delegate void ActualizarPartida(DataGridView data);
+        public delegate void ActualizarPartida(DataGridView data, List<string> list);
         public event ActualizarPartida Enviar;
         public DataGridView DataGrid;
-        public FormCapturacodigo()
+        private int codigoCapturados;
+        public FormCapturacodigo(List<string> listacodigos)
         {
             InitializeComponent();
+            this.txtCaptura.Focus();
+            if (listacodigos != null)
+            {
+                foreach (string codi in listacodigos)
+                {
+                    this.listCodigos.Items.Add(codi);
+                }
+            }
+            codigoCapturados = listacodigos.Count;
         }
 
         private void TextBox1_KeyPress(object sender, KeyPressEventArgs e)
@@ -42,30 +52,47 @@ namespace LBInventory
 
         private void FormCapturacodigo_Load(object sender, EventArgs e)
         {
-            txtCaptura.Focus();
+            
         }
 
         private void BtnValidar_Click(object sender, EventArgs e)
         {
-            var codigos = RNCodigo.Desfracmentar(listCodigos);
-            foreach (var c in codigos)
-            {
-                foreach(DataGridViewRow dgvRenglon in DataGrid.Rows)
-                {
-                    string celda7 = dgvRenglon.Cells[7].Value.ToString();
-                    if (c.producto == dgvRenglon.Cells[7].Value.ToString() && !String.IsNullOrEmpty( dgvRenglon.Cells[7].Value.ToString()))
-                    {
-                        dgvRenglon.Cells[6].Value = c.compañia;
-                        dgvRenglon.Cells[8].Value = c.control;
-                        dgvRenglon.Cells[9].Value = c.contador;
-                        dgvRenglon.Cells[10].Value = c.caducidad;
-                        dgvRenglon.Cells[11].Value = c.lote;
 
+            var codigos = RNCodigo.Desfracmentar(listCodigos, codigoCapturados);
+            foreach (DataGridViewRow dgvRenglon in DataGrid.Rows)
+            {
+                foreach (var c in codigos)
+                {
+                    if (c.producto == dgvRenglon.Cells[6].Value.ToString() && !String.IsNullOrEmpty(dgvRenglon.Cells[6].Value.ToString()))
+                    {
+                        // contador de productos escaneados
+                        int contador = Convert.ToInt32(dgvRenglon.Cells[7].Value) + 1;
+                        dgvRenglon.Cells[7].Value = contador;
+                        // validar si el tamaño de las columnas es igual a 7 +2
+                        if (DataGrid.Columns.Count+2 == (8+(contador*2)))
+                        {
+                            DataGridViewTextBoxColumn column = new DataGridViewTextBoxColumn();
+                            column.HeaderText = "caducidad" + contador;
+                            column.Width = 200;
+                            DataGridViewTextBoxColumn column1 = new DataGridViewTextBoxColumn();
+                            column1.HeaderText = "lote" + contador;
+                            column1.Width = 200;
+                            DataGrid.Columns.Add(column);
+                            DataGrid.Columns.Add(column1);
+                        }
+
+                        dgvRenglon.Cells[7 + (contador *2)-1].Value = c.caducidad;
+                        dgvRenglon.Cells[7 + (contador *2)].Value = c.lote;
                     }
                 }
             }
+            List<string> codigosLeidos = new List<string>();
+            foreach(var lc in listCodigos.Items)
+            {
+                codigosLeidos.Add(lc.ToString());
+            }
 
-            Enviar(DataGrid);
+            Enviar(DataGrid, codigosLeidos);
             this.Close();
         }
     }

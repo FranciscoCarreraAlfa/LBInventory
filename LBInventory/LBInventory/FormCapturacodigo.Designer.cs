@@ -42,6 +42,7 @@
             // 
             // listCodigos
             // 
+            this.listCodigos.Enabled = false;
             this.listCodigos.FormattingEnabled = true;
             this.listCodigos.ItemHeight = 19;
             this.listCodigos.Location = new System.Drawing.Point(148, 138);
@@ -137,13 +138,12 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox listCodigos;
         private System.Windows.Forms.TextBox txtCaptura;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblPartida;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnValidar;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.ListBox listCodigos;
     }
 }

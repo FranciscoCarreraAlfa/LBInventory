@@ -42,6 +42,7 @@
             // dataGridOrdenes
             // 
             this.dataGridOrdenes.AccessibleRole = System.Windows.Forms.AccessibleRole.Text;
+            this.dataGridOrdenes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridOrdenes.BackgroundColor = System.Drawing.Color.White;
             this.dataGridOrdenes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridOrdenes.GridColor = System.Drawing.Color.Gray;

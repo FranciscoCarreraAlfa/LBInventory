@@ -17,12 +17,10 @@ namespace Negocio
         public int CANTIDAD { get; set; }
         public decimal PRECIO { get; set; }
         public decimal TOT_PARTIDA { get; set; }
-        public string codigo_Compania { get; set; }
         public string codigo_Corto { get; set; }
-        public string digito_Control { get; set; }
         public int contador { get; set; }
-        public DateTime fecha_Caducidad { get; set; }
-        public string num_Lote { get; set; }
+        public List<DateTime> fecha_Caducidad { get; set; }
+        public List<string> num_Lote { get; set; }
 
         public static List<RNPartidaCompra> ObtenerPartidas( string cve_doc )
         {
@@ -63,6 +61,8 @@ namespace Negocio
                     par.PRECIO = Convert.ToDecimal(row["PREC"].ToString());
                     par.TOT_PARTIDA = Convert.ToDecimal(row["TOT_PARTIDA"].ToString());
                     par.codigo_Corto = row["CVE_ALTER"].ToString();
+                    par.fecha_Caducidad = new List<DateTime>();
+                    par.num_Lote = new List<string>();
                     partidas.Add(par);
                 }
                 

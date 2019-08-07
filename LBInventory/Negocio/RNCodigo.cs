@@ -16,12 +16,17 @@ namespace Negocio
         public DateTime caducidad { get; set; }
         public string lote { get; set; }
 
-        public static List<RNCodigo> Desfracmentar(ListBox list)
+        public static List<RNCodigo> Desfracmentar(ListBox list,int contador)
         {
             List<RNCodigo> codigos = new List<RNCodigo>();
+            int i = 1;
             foreach(var item in list.Items)
             {
-                codigos.Add(Decodificar(item.ToString()));
+                if (i > contador)
+                {
+                    codigos.Add(Decodificar(item.ToString()));
+                }
+                i++;
             }
             return codigos;
         }

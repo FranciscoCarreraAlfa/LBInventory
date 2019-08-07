@@ -23,6 +23,7 @@ namespace LBInventory
         public FormLogin()
         {
             InitializeComponent();
+            this.button1.Focus();
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -58,7 +59,7 @@ namespace LBInventory
 
         private void FormLogin_Load(object sender, EventArgs e)
         {
-            button1.Focus();
+            
         }
     }
 }

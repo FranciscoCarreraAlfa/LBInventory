@@ -9,14 +9,23 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Negocio;
 using Datos;
+using ClosedXML.Excel;
+using System.Diagnostics;
 
 namespace LBInventory
 {
     public partial class FormCompras : Form
     {
+        List<string> codigosEscaneados = new List<string>();
+        private string cveOrden;
+        private string proveedor;
+        private string importe;
+        
         public FormCompras()
         {
             InitializeComponent();
+            this.txtOrdenCompra.Focus();
+            
         }
         private void FormCompras_Load(object sender, EventArgs e)
         {
@@ -39,6 +48,7 @@ namespace LBInventory
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
             // se crea un nuevo form para el form modal
+            codigosEscaneados = new List<string>();
             FormOrdenes ordenes = new FormOrdenes() ;
             ordenes.Enviar += new FormOrdenes.EnviarOrden(Ordenes_Enviar);
             ordenes.Owner = this;
@@ -56,6 +66,9 @@ namespace LBInventory
             lblNombre.Text ="Nombre Proveedor: "+ compra.NOMBRE;
             lblOrden.Text = "Orden de Compra: "+compra.CVE_DOC;
             lblRFC.Text = "Importe Total: "+compra.IMPORTE.ToString();
+            proveedor =compra.NOMBRE;
+            cveOrden =compra.CVE_DOC;
+            importe = compra.IMPORTE.ToString();
         }
 
         private void DataGridCompras_KeyPress(object sender, KeyPressEventArgs e)
@@ -64,19 +77,52 @@ namespace LBInventory
 
         private void CapturarCodigos_Click(object sender, EventArgs e)
         {
-            FormCapturacodigo captura = new FormCapturacodigo() { DataGrid = dataGridCompras };
-            captura.Enviar += new FormCapturacodigo.ActualizarPartida(Partidas_Enviar); 
-            captura.Owner = this;
-            captura.ShowDialog();
+            bool msgVacio = false;
+            foreach (DataGridViewRow dgvRenglon in dataGridCompras.Rows)
+            {
+                if (string.IsNullOrEmpty(dgvRenglon.Cells[6].Value.ToString()))
+                {
+                    msgVacio = true;
+                }
+            }
+
+            if (msgVacio)
+            {
+                MessageBox.Show("Existen Productos sin condigo corto, valida por favor tu información", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                FormCapturacodigo captura = new FormCapturacodigo(codigosEscaneados) { DataGrid = dataGridCompras};
+                captura.Enviar += new FormCapturacodigo.ActualizarPartida(Partidas_Enviar);
+                captura.Owner = this;
+                captura.ShowDialog();
+                btnReporte.Enabled = true;
+                btnGenTRecepcion.Enabled = true;
+            }
+
         }
-        private void Partidas_Enviar(DataGridView data)
+        private void Partidas_Enviar(DataGridView data, List<string> listacodigos)
         {
             dataGridCompras = data;
+            codigosEscaneados = listacodigos;
         }
 
         private void DataGridCompras_DataSourceChanged(object sender, EventArgs e)
         {
             btnCapturarCodigo.Enabled = true;
+        }
+
+        private void BtnReporte_Click(object sender, EventArgs e)
+        {
+
+            var fileName = System.IO.Path.GetTempPath() + @"\ReportedeIncidenciasCompras" + DateTime.Now.ToString("ddMMyyhhmmss") + ".xlsx";
+            RNReporteCompra.Reporte(dataGridCompras, codigosEscaneados, proveedor,cveOrden,importe).SaveAs(fileName);
+            Process.Start(fileName);
+        }
+
+        private void BtnGenTRecepcion_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
