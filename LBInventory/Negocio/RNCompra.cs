@@ -22,7 +22,7 @@ namespace Negocio
         {
             try
             {
-                var configuracion = RNConfiguracion.Listar().Where(x=> x.SNComercializadora).FirstOrDefault();
+                var configuracion = RNConfiguracion.Listar().Where(x=> x.SNImportadora).FirstOrDefault();
                 RNConexion conexion = new RNConexion(configuracion.NumEmpresa);
                 conexion.baseDatos.AbrirConexion();
                 dataGridCompras.DataSource=conexion.baseDatos.ObtenerTabla("select c.CVE_DOC,p.CLAVE as Cve_Proveedor, p.NOMBRE as Nom_Proveedor ,  c.IMPORTE , m.DESCR as MONEDA"
@@ -41,7 +41,7 @@ namespace Negocio
             try
             {
                 
-                var configuracion = RNConfiguracion.Listar().Where(x => x.SNComercializadora).FirstOrDefault();
+                var configuracion = RNConfiguracion.Listar().Where(x => x.SNImportadora).FirstOrDefault();
                 RNConexion conexion = new RNConexion(configuracion.NumEmpresa);
                 conexion.baseDatos.AbrirConexion();
                 conexion.baseDatos.AgregarParametro("@cve",cve);

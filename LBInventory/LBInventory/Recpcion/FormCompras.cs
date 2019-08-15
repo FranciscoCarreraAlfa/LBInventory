@@ -85,7 +85,6 @@ namespace LBInventory
                     msgVacio = true;
                 }
             }
-
             if (msgVacio)
             {
                 MessageBox.Show("Existen Productos sin condigo corto, valida por favor tu información", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -99,7 +98,6 @@ namespace LBInventory
                 btnReporte.Enabled = true;
                 btnGenTRecepcion.Enabled = true;
             }
-
         }
         private void Partidas_Enviar(DataGridView data, List<string> listacodigos)
         {
@@ -114,7 +112,6 @@ namespace LBInventory
 
         private void BtnReporte_Click(object sender, EventArgs e)
         {
-
             var fileName = System.IO.Path.GetTempPath() + @"\ReportedeIncidenciasCompras" + DateTime.Now.ToString("ddMMyyhhmmss") + ".xlsx";
             RNReporteCompra.Reporte(dataGridCompras, codigosEscaneados, proveedor,cveOrden,importe).SaveAs(fileName);
             Process.Start(fileName);
@@ -122,7 +119,8 @@ namespace LBInventory
 
         private void BtnGenTRecepcion_Click(object sender, EventArgs e)
         {
-
+            string pedimento = Microsoft.VisualBasic.Interaction.InputBox("Ingresa el Pedimento: ","Pedimento","",300,300);
+            RNRecepcion.GenerarRecepcion(dataGridCompras,2,pedimento);
         }
     }
 }

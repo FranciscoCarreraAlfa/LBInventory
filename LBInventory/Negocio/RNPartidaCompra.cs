@@ -45,11 +45,11 @@ namespace Negocio
                 //    dataGridCompras.DataSource = conexion.baseDatos.ObtenerTabla("select f.NUM_PAR ,f.CVE_ART ,pr.DESCR,f.CANT,f.PREC, f.TOT_PARTIDA from PAR_FACTP{0} f inner join INVE{0} pr on pr.CVE_ART = f.CVE_ART where p.CVE_DOC = @cve_doc; ;");
                 //}
                
-                var configuracion = RNConfiguracion.Listar().Where(x => x.SNComercializadora).FirstOrDefault();
+                var configuracion = RNConfiguracion.Listar().Where(x => x.SNImportadora).FirstOrDefault();
                 RNConexion conexion = new RNConexion(configuracion.NumEmpresa);
                 conexion.baseDatos.AbrirConexion();
                 conexion.baseDatos.AgregarParametro("@cve_doc", cve_doc);
-                var result = conexion.baseDatos.ObtenerTabla("select p.NUM_PAR,p.CVE_ART,pr.DESCR ,p.CANT, p.PREC, p.TOT_PARTIDA,ca.CVE_ALTER      from PAR_COMPO{0} as P inner join INVE{0} pr on pr.CVE_ART = p.CVE_ART left join CVES_ALTER{0} ca on ca.CVE_ART = p.CVE_ART where p.CVE_DOC = @cve_doc; ");
+                var result = conexion.baseDatos.ObtenerTabla("select p.NUM_PAR,p.CVE_ART,pr.DESCR ,p.CANT, p.PREC, p.TOT_PARTIDA,coalesce(ca.CVE_ALTER,p.CVE_ART ) as CVE_ALTER      from PAR_COMPO{0} as P inner join INVE{0} pr on pr.CVE_ART = p.CVE_ART left join CVES_ALTER{0} ca on ca.CVE_ART = p.CVE_ART where p.CVE_DOC = @cve_doc; ");
                 
                 foreach (DataRow row in result.Rows)
                 {

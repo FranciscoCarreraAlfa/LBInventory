@@ -97,6 +97,7 @@
     <Compile Include="RNConfiguracion.cs" />
     <Compile Include="RNPartidaCompra.cs" />
     <Compile Include="RNPerfil.cs" />
+    <Compile Include="RNRecepcion.cs" />
     <Compile Include="RNReporteCompra.cs" />
     <Compile Include="RNTipoconexion.cs" />
     <Compile Include="RNUsuario.cs" />

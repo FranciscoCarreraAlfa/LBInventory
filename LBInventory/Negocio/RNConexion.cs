@@ -20,7 +20,7 @@ namespace Negocio
         public BaseDatos baseDatos;
         private FbConnection FBConexion;
         private SqlConnection SQLConexion;
-        private int numEmpresa = 1;
+        private int numEmpresa { get; set; }
         public string nombreEmpresa { get; set; }
         public string TelefonoEmpresa { get; set; }
         public string RFC { get; set; }
@@ -29,15 +29,15 @@ namespace Negocio
 
         public RNConexion()
         {
-            baseDatos = new BaseDatos(ObtenerConexion(), numEmpresa);
+            baseDatos = new BaseDatos(ObtenerConexion(1), numEmpresa);
         }
 
         public RNConexion(int numEmpresa)
         {
-            baseDatos = new BaseDatos(ObtenerConexion(), numEmpresa);
+            baseDatos = new BaseDatos(ObtenerConexion(numEmpresa), numEmpresa);
         }
 
-        protected DbConnection ObtenerConexion()
+        protected DbConnection ObtenerConexion(int numEmpresa)
         {
 
             ctrlConexion ctrlConexion = new ctrlConexion();
@@ -48,7 +48,7 @@ namespace Negocio
                 using (var ctx = new LBInventoryEntities())
                 {
                     //Depende del usuario, solo debe cargar los usuario segun el perfil y la sucursal
-                    ctrlConexion = ctx.ctrlConexion.Where(x => x.SNActivo == true).FirstOrDefault();
+                    ctrlConexion = ctx.ctrlConexion.Where(x => x.SNActivo == true && x.NumEmpresa == numEmpresa).FirstOrDefault();
                 }
 
                 if (ctrlConexion != null)

@@ -82,61 +82,61 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormCapturacodigo.cs">
+    <Compile Include="Recpcion\FormCapturacodigo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCapturacodigo.Designer.cs">
+    <Compile Include="Recpcion\FormCapturacodigo.Designer.cs">
       <DependentUpon>FormCapturacodigo.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormCompras.cs">
+    <Compile Include="Recpcion\FormCompras.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCompras.Designer.cs">
+    <Compile Include="Recpcion\FormCompras.Designer.cs">
       <DependentUpon>FormCompras.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormConfiguracion.cs">
+    <Compile Include="Configuracion\FormConfiguracion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormConfiguracion.Designer.cs">
+    <Compile Include="Configuracion\FormConfiguracion.Designer.cs">
       <DependentUpon>FormConfiguracion.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormLogin.cs">
+    <Compile Include="Principal\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormLogin.Designer.cs">
+    <Compile Include="Principal\FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormOrdenes.cs">
+    <Compile Include="Recpcion\FormOrdenes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormOrdenes.Designer.cs">
+    <Compile Include="Recpcion\FormOrdenes.Designer.cs">
       <DependentUpon>FormOrdenes.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormPrincipal.cs">
+    <Compile Include="Principal\FormPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormPrincipal.Designer.cs">
+    <Compile Include="Principal\FormPrincipal.Designer.cs">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sesion.cs" />
-    <EmbeddedResource Include="FormCapturacodigo.resx">
+    <EmbeddedResource Include="Recpcion\FormCapturacodigo.resx">
       <DependentUpon>FormCapturacodigo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormCompras.resx">
+    <EmbeddedResource Include="Recpcion\FormCompras.resx">
       <DependentUpon>FormCompras.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormConfiguracion.resx">
+    <EmbeddedResource Include="Configuracion\FormConfiguracion.resx">
       <DependentUpon>FormConfiguracion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormLogin.resx">
+    <EmbeddedResource Include="Principal\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormOrdenes.resx">
+    <EmbeddedResource Include="Recpcion\FormOrdenes.resx">
       <DependentUpon>FormOrdenes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormPrincipal.resx">
+    <EmbeddedResource Include="Principal\FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
