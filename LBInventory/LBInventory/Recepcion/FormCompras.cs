@@ -20,6 +20,7 @@ namespace LBInventory
         private string cveOrden;
         private string proveedor;
         private string importe;
+        private string pedimento;
         
         public FormCompras()
         {
@@ -119,8 +120,19 @@ namespace LBInventory
 
         private void BtnGenTRecepcion_Click(object sender, EventArgs e)
         {
-            string pedimento = Microsoft.VisualBasic.Interaction.InputBox("Ingresa el Pedimento: ","Pedimento","",300,300);
-            RNRecepcion.GenerarRecepcion(dataGridCompras,2,pedimento);
+            // cambiar por una pantalla mas acorde con el desarrollo
+            //  se crea un nuevo form para el form modal
+            FormPedimento pedimento = new FormPedimento();
+            pedimento.Enviar += new FormPedimento.EnviarPedimento(Pedimento_Enviar);
+            pedimento.Owner = this;
+            pedimento.ShowDialog();
+            // string pedimento = Microsoft.VisualBasic.Interaction.InputBox("Ingresa el Pedimento: ","Pedimento","",300,300);
+            RNRecepcion.GenerarRecepcion(dataGridCompras,2,this.pedimento);
+        }
+
+        private void Pedimento_Enviar(string cve)
+        {
+            pedimento = cve;
         }
     }
 }

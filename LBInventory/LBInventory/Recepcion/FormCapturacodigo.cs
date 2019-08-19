@@ -90,5 +90,10 @@ namespace LBInventory
             Enviar(DataGrid, codigosLeidos);
             this.Close();
         }
+
+        private void Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

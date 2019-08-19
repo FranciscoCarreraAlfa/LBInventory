@@ -42,5 +42,10 @@ namespace LBInventory
         {
 
         }
+
+        private void Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
