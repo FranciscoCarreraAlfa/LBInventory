@@ -127,12 +127,36 @@ namespace LBInventory
             pedimento.Owner = this;
             pedimento.ShowDialog();
             // string pedimento = Microsoft.VisualBasic.Interaction.InputBox("Ingresa el Pedimento: ","Pedimento","",300,300);
-            RNRecepcion.GenerarRecepcion(dataGridCompras,2,this.pedimento);
+            RNRecepcion.GenerarRecepcion(dataGridCompras, cveOrden, 2,this.pedimento);
+            ClearForm();
+
         }
 
         private void Pedimento_Enviar(string cve)
         {
             pedimento = cve;
         }
+
+        private void ClearForm()
+        {
+            txtOrdenCompra.Text = "";
+            dataGridCompras.DataSource = null;
+            lblNombre.Text = "Nombre Proveedor: ";
+            lblOrden.Text = "Orden de Compra: ";
+            lblRFC.Text = "Importe Total: " ;
+            btnGenTRecepcion.Enabled = false;
+            btnReporte.Enabled = false;
+        }
+
+        private class Pedimento
+        {
+            public string numPedimento { get; set; }
+            public string Aduana { get; set; }
+            public string Fecha { get; set; }
+            public string Ciudad { get; set; }
+            public string Frontera { get; set; }
+            public string GLN { get; set; }
+        }
     }
+
 }

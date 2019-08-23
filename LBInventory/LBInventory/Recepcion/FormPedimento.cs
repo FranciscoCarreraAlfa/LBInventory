@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using Negocio;
 
 namespace LBInventory
 {
@@ -17,7 +18,7 @@ namespace LBInventory
         private extern static void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hand, int wmsg, int wparam, int lparam);
-        public delegate void EnviarPedimento(string cve);
+        public delegate void EnviarPedimento(RNPedimento cve);
         public event EnviarPedimento Enviar;
 
         public FormPedimento()
@@ -33,7 +34,14 @@ namespace LBInventory
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            Enviar(txtPedimento.Text);
+            RNPedimento pe = new RNPedimento();
+            pe.numPedimento = txtPedimento.Text;
+            pe.Aduana = txtAduana.Text;
+            pe.Fecha = txtFecha.Text;
+            pe.Ciudad = txtCiudad.Text;
+            pe.Frontera = txtFrontera.Text;
+            pe.GLN = txtGln.Text;
+            Enviar(pe);
             this.Close();
         }
 

@@ -36,13 +36,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtPedimento = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtAduana = new System.Windows.Forms.TextBox();
+            this.txtFecha = new System.Windows.Forms.TextBox();
+            this.txtCiudad = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtFrontera = new System.Windows.Forms.TextBox();
+            this.txtGln = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
@@ -113,26 +113,26 @@
             this.txtPedimento.Size = new System.Drawing.Size(558, 26);
             this.txtPedimento.TabIndex = 6;
             // 
-            // textBox2
+            // txtAduana
             // 
-            this.textBox2.Location = new System.Drawing.Point(162, 147);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(196, 26);
-            this.textBox2.TabIndex = 7;
+            this.txtAduana.Location = new System.Drawing.Point(162, 147);
+            this.txtAduana.Name = "txtAduana";
+            this.txtAduana.Size = new System.Drawing.Size(196, 26);
+            this.txtAduana.TabIndex = 7;
             // 
-            // textBox3
+            // txtFecha
             // 
-            this.textBox3.Location = new System.Drawing.Point(162, 185);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(196, 26);
-            this.textBox3.TabIndex = 7;
+            this.txtFecha.Location = new System.Drawing.Point(162, 185);
+            this.txtFecha.Name = "txtFecha";
+            this.txtFecha.Size = new System.Drawing.Size(196, 26);
+            this.txtFecha.TabIndex = 7;
             // 
-            // textBox4
+            // txtCiudad
             // 
-            this.textBox4.Location = new System.Drawing.Point(162, 226);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(196, 26);
-            this.textBox4.TabIndex = 7;
+            this.txtCiudad.Location = new System.Drawing.Point(162, 226);
+            this.txtCiudad.Name = "txtCiudad";
+            this.txtCiudad.Size = new System.Drawing.Size(196, 26);
+            this.txtCiudad.TabIndex = 7;
             // 
             // label5
             // 
@@ -152,19 +152,19 @@
             this.label7.TabIndex = 8;
             this.label7.Text = "GLN:";
             // 
-            // textBox5
+            // txtFrontera
             // 
-            this.textBox5.Location = new System.Drawing.Point(524, 147);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(196, 26);
-            this.textBox5.TabIndex = 7;
+            this.txtFrontera.Location = new System.Drawing.Point(524, 147);
+            this.txtFrontera.Name = "txtFrontera";
+            this.txtFrontera.Size = new System.Drawing.Size(196, 26);
+            this.txtFrontera.TabIndex = 7;
             // 
-            // textBox6
+            // txtGln
             // 
-            this.textBox6.Location = new System.Drawing.Point(524, 185);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(196, 26);
-            this.textBox6.TabIndex = 7;
+            this.txtGln.Location = new System.Drawing.Point(524, 185);
+            this.txtGln.Name = "txtGln";
+            this.txtGln.Size = new System.Drawing.Size(196, 26);
+            this.txtGln.TabIndex = 7;
             // 
             // button1
             // 
@@ -203,11 +203,11 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtCiudad);
+            this.Controls.Add(this.txtGln);
+            this.Controls.Add(this.txtFecha);
+            this.Controls.Add(this.txtFrontera);
+            this.Controls.Add(this.txtAduana);
             this.Controls.Add(this.txtPedimento);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -234,13 +234,13 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtPedimento;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtAduana;
+        private System.Windows.Forms.TextBox txtFecha;
+        private System.Windows.Forms.TextBox txtCiudad;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtFrontera;
+        private System.Windows.Forms.TextBox txtGln;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
     }

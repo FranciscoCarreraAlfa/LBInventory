@@ -68,9 +68,11 @@ namespace LBInventory
                             DataGridViewTextBoxColumn column1 = new DataGridViewTextBoxColumn();
                             column1.HeaderText = "lote" + contador;
                             column1.Width = 200;
+                            column1.Visible = false;
                             DataGridViewTextBoxColumn column = new DataGridViewTextBoxColumn();
                             column.HeaderText = "caducidad" + contador;
                             column.Width = 200;
+                            column.Visible = false;
                             DataGrid.Columns.Add(column1);
                             DataGrid.Columns.Add(column);
 
