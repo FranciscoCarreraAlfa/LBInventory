@@ -40,7 +40,7 @@ namespace Negocio
             return true;
         }
 
-        public static void GenerarRecepcion(DataGridView dataGridCompras,string cveDoc ,int numEmpresa, RNPredimento pedimento)
+        public static void GenerarRecepcion(DataGridView dataGridCompras,string cveDoc ,int numEmpresa, RNPedimento pedimento)
         {
             try
             {
@@ -91,7 +91,7 @@ namespace Negocio
                     }
                     else
                     {
-                        reg_ltpd = ActualizarLote(l.lote, pedimento, l.articulo, l.caducidad, l.contador, 1, "A", DateTime.Now, numEmpresa);
+                        reg_ltpd = ActualizarLote(l.lote, pedimento.numPedimento, l.articulo, l.caducidad, l.contador, 1, "A", DateTime.Now, numEmpresa);
                         l.reg_ltpd_Enlace =RNOrdenRecepcion.RegistrarEnlace(reg_ltpd, l.contador, numEmpresa);
                         l.minve_id = RNOrdenRecepcion.RegistrarMovInve(partidas.Where(x=> x.NUM_PAR == l.partida).FirstOrDefault(), recepcion, l.reg_ltpd_Enlace, numEmpresa);
                     }

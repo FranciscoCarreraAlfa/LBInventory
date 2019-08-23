@@ -20,7 +20,7 @@ namespace LBInventory
         private string cveOrden;
         private string proveedor;
         private string importe;
-        private string pedimento;
+        private RNPedimento pedimento;
         
         public FormCompras()
         {
@@ -132,7 +132,7 @@ namespace LBInventory
 
         }
 
-        private void Pedimento_Enviar(string cve)
+        private void Pedimento_Enviar(RNPedimento cve)
         {
             pedimento = cve;
         }
@@ -148,15 +148,7 @@ namespace LBInventory
             btnReporte.Enabled = false;
         }
 
-        private class Pedimento
-        {
-            public string numPedimento { get; set; }
-            public string Aduana { get; set; }
-            public string Fecha { get; set; }
-            public string Ciudad { get; set; }
-            public string Frontera { get; set; }
-            public string GLN { get; set; }
-        }
+
     }
 
 }
