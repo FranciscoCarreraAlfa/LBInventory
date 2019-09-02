@@ -37,7 +37,7 @@ namespace LBInventory
             RNPedimento pe = new RNPedimento();
             pe.numPedimento = txtPedimento.Text;
             pe.Aduana = txtAduana.Text;
-            pe.Fecha = txtFecha.Text;
+            pe.Fecha = datePedimento.Value;
             pe.Ciudad = txtCiudad.Text;
             pe.Frontera = txtFrontera.Text;
             pe.GLN = txtGln.Text;

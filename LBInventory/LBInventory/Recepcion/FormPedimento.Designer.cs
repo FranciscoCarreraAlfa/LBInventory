@@ -37,7 +37,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtPedimento = new System.Windows.Forms.TextBox();
             this.txtAduana = new System.Windows.Forms.TextBox();
-            this.txtFecha = new System.Windows.Forms.TextBox();
             this.txtCiudad = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -45,6 +44,7 @@
             this.txtGln = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.datePedimento = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -117,21 +117,14 @@
             // 
             this.txtAduana.Location = new System.Drawing.Point(162, 147);
             this.txtAduana.Name = "txtAduana";
-            this.txtAduana.Size = new System.Drawing.Size(196, 26);
+            this.txtAduana.Size = new System.Drawing.Size(200, 26);
             this.txtAduana.TabIndex = 7;
-            // 
-            // txtFecha
-            // 
-            this.txtFecha.Location = new System.Drawing.Point(162, 185);
-            this.txtFecha.Name = "txtFecha";
-            this.txtFecha.Size = new System.Drawing.Size(196, 26);
-            this.txtFecha.TabIndex = 7;
             // 
             // txtCiudad
             // 
             this.txtCiudad.Location = new System.Drawing.Point(162, 226);
             this.txtCiudad.Name = "txtCiudad";
-            this.txtCiudad.Size = new System.Drawing.Size(196, 26);
+            this.txtCiudad.Size = new System.Drawing.Size(200, 26);
             this.txtCiudad.TabIndex = 7;
             // 
             // label5
@@ -192,6 +185,13 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
+            // datePedimento
+            // 
+            this.datePedimento.Location = new System.Drawing.Point(162, 185);
+            this.datePedimento.Name = "datePedimento";
+            this.datePedimento.Size = new System.Drawing.Size(200, 26);
+            this.datePedimento.TabIndex = 10;
+            // 
             // FormPedimento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
@@ -199,13 +199,13 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.ControlBox = false;
+            this.Controls.Add(this.datePedimento);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtCiudad);
             this.Controls.Add(this.txtGln);
-            this.Controls.Add(this.txtFecha);
             this.Controls.Add(this.txtFrontera);
             this.Controls.Add(this.txtAduana);
             this.Controls.Add(this.txtPedimento);
@@ -235,7 +235,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtPedimento;
         private System.Windows.Forms.TextBox txtAduana;
-        private System.Windows.Forms.TextBox txtFecha;
         private System.Windows.Forms.TextBox txtCiudad;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
@@ -243,5 +242,6 @@
         private System.Windows.Forms.TextBox txtGln;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DateTimePicker datePedimento;
     }
 }

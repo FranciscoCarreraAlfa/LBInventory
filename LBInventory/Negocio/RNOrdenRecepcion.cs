@@ -9,7 +9,7 @@ using System.Data;
 
 namespace Negocio
 {
-    class RNOrdenRecepcion
+    public class RNOrdenRecepcion
     {
         public string TIP_DOC = "r"; 
         public string CVE_DOC { get; set; }
@@ -126,6 +126,91 @@ namespace Negocio
             
         }
 
+        public RNOrdenRecepcion GenerarRecepcion(RNOrdenRecepcion recepcion, List<RNPartidasRecepcion> partidas, string cveDoc,int folio,int numEmpresa, List<RNRecepcion.Lotes> lotes)
+        {
+            //obtener la info del PROVEEDOR para recepcion
+            RNProveedor prov = RNLbInventory.ObtenerProveedorRecepcion(numEmpresa);
+            // INSETAR PARTIDAS Y REGRESAR  EL TORTAL
+            //agregar las partidas
+            
+            try
+            {
+                RNConexion conexion = new RNConexion(numEmpresa);
+                conexion.baseDatos.AbrirConexion();
+                conexion.baseDatos.LimpiarParametros();
+                conexion.baseDatos.AgregarParametro("@TIP_DOC", recepcion.TIP_DOC);
+                conexion.baseDatos.AgregarParametro("@CVE_DOC", cveDoc);
+                conexion.baseDatos.AgregarParametro("@CVE_CLPV",prov.CLAVE);
+                conexion.baseDatos.AgregarParametro("@STATUS",recepcion.STATUS);
+                conexion.baseDatos.AgregarParametro("@SU_REFER",recepcion.SU_REFER);
+                conexion.baseDatos.AgregarParametro("@FECHA_DOC",recepcion.FECHA_DOC);
+                conexion.baseDatos.AgregarParametro("@FECHA_REC",recepcion.FECHA_REC);
+                conexion.baseDatos.AgregarParametro("@FECHA_PAG",recepcion.FECHA_PAG);
+                conexion.baseDatos.AgregarParametro("@FECHA_CANCELA",recepcion.FECHA_CANCELA);
+                conexion.baseDatos.AgregarParametro("@CAN_TOT", recepcion.CAN_TOT);
+                conexion.baseDatos.AgregarParametro("@IMP_TOT1", 0.00M);
+                conexion.baseDatos.AgregarParametro("@IMP_TOT2", 0.00M);
+                conexion.baseDatos.AgregarParametro("@IMP_TOT3", 0.00M);
+                conexion.baseDatos.AgregarParametro("@IMP_TOT4", 0.00M);
+                conexion.baseDatos.AgregarParametro("@TOT_IND",recepcion.TOT_IND);
+                conexion.baseDatos.AgregarParametro("@DES_TOT",recepcion.DES_TOT);
+                conexion.baseDatos.AgregarParametro("@DES_FIN",recepcion.DES_FIN);
+                conexion.baseDatos.AgregarParametro("@OBS_COND", recepcion.OBS_COND);
+                conexion.baseDatos.AgregarParametro("@CVE_OBS", recepcion.CVE_OBS);
+                conexion.baseDatos.AgregarParametro("@NUM_ALMA",recepcion.NUM_ALMA);
+                conexion.baseDatos.AgregarParametro("@ACT_CXP",recepcion.ACT_CXP );
+                conexion.baseDatos.AgregarParametro("@ACT_COI",recepcion.ACT_COI );
+                conexion.baseDatos.AgregarParametro("@NUM_MONED",recepcion.NUM_MONED);
+                conexion.baseDatos.AgregarParametro("@TIPCAMB",recepcion.TIPCAMB);
+                conexion.baseDatos.AgregarParametro("@NUM_PAGOS",recepcion.NUM_PAGOS);
+                conexion.baseDatos.AgregarParametro("@ENLAZADO",recepcion.ENLAZADO );
+                conexion.baseDatos.AgregarParametro("@TIP_DOC_E",recepcion.TIP_DOC_E);
+                conexion.baseDatos.AgregarParametro("@FECHAELAB",recepcion.FECHAELAB);
+                conexion.baseDatos.AgregarParametro("@SERIE",recepcion.SERIE);
+                conexion.baseDatos.AgregarParametro("@FOLIO",folio);
+                conexion.baseDatos.AgregarParametro("@CTLPOL",recepcion.CTLPOL);
+                conexion.baseDatos.AgregarParametro("@ESCFD",recepcion.ESCFD);
+                conexion.baseDatos.AgregarParametro("@CONTADO",recepcion.CONTADO);
+                conexion.baseDatos.AgregarParametro("@BLOQ",recepcion.BLOQ);
+                conexion.baseDatos.AgregarParametro("@DES_FIN_PORC",recepcion.DES_FIN_PORC);
+                conexion.baseDatos.AgregarParametro("@DES_TOT_PORC",recepcion.DES_TOT_PORC);
+                conexion.baseDatos.AgregarParametro("@IMPORTE", 0.00M);
+                conexion.baseDatos.AgregarParametro("@TIP_DOC_ANT","");
+                conexion.baseDatos.AgregarParametro("@DOC_ANT","");
+                conexion.baseDatos.AgregarParametro("@TIP_DOC_SIG",null);
+                conexion.baseDatos.AgregarParametro("@DOC_SIG",null);
+                conexion.baseDatos.AgregarParametro("@FORMAENVIO",recepcion.FORMAENVIO);
+                var result = conexion.baseDatos.EjecutarSinConsulta(" INSERT INTO COMPR{0} (TIP_DOC,CVE_DOC,CVE_CLPV,STATUS,SU_REFER,FECHA_DOC,FECHA_REC,FECHA_PAG,FECHA_CANCELA,CAN_TOT,IMP_TOT1,IMP_TOT2,IMP_TOT3,IMP_TOT4,DES_TOT,DES_FIN,TOT_IND,OBS_COND,CVE_OBS,NUM_ALMA,ACT_CXP,ACT_COI,ENLAZADO,TIP_DOC_E,NUM_MONED,TIPCAMB,NUM_PAGOS,FECHAELAB,SERIE,FOLIO,CTLPOL,ESCFD,CONTADO,BLOQ,DES_FIN_PORC,DES_TOT_PORC,IMPORTE,TIP_DOC_ANT,DOC_ANT,TIP_DOC_SIG,DOC_SIG,FORMAENVIO) " +
+                    "VALUES (@TIP_DOC,@CVE_DOC,@CVE_CLPV,@STATUS,@SU_REFER,@FECHA_DOC,@FECHA_REC,@FECHA_PAG,@FECHA_CANCELA,@CAN_TOT,@IMP_TOT1,@IMP_TOT2,@IMP_TOT3,@IMP_TOT4,@DES_TOT,@DES_FIN,@TOT_IND,@OBS_COND,@CVE_OBS,@NUM_ALMA,@ACT_CXP,@ACT_COI,@ENLAZADO,@TIP_DOC_E,@NUM_MONED,@TIPCAMB,@NUM_PAGOS,@FECHAELAB,@SERIE,@FOLIO,@CTLPOL,@ESCFD,@CONTADO,@BLOQ,@DES_FIN_PORC,@DES_TOT_PORC,@IMPORTE,@TIP_DOC_ANT,@DOC_ANT,@TIP_DOC_SIG,@DOC_SIG,@FORMAENVIO) ", CommandType.Text) >0;
+                // agregar los campos libres 
+                conexion.baseDatos.LimpiarParametros();
+                conexion.baseDatos.AgregarParametro("@CVE_DOC", recepcion.CVE_DOC);
+                var resultcl = conexion.baseDatos.EjecutarSinConsulta(" insert into COMPR_CLIB{0}(CLAVE_DOC) values(@CVE_DOC); ", CommandType.Text) >0;
+                decimal cant_total, imp1, imp2, imp3, imp4, total, desc, descind, desfin;
+                var bpartidas = new RNPartidasRecepcion().InsertarPartidas(partidas, cveDoc, folio, lotes, numEmpresa, out cant_total, out imp1, out imp2, out imp3, out imp4, out total, out desc, out descind, out desfin);
+                conexion.baseDatos.LimpiarParametros();
+                conexion.baseDatos.AgregarParametro("@IMP_TOT1", imp1);
+                conexion.baseDatos.AgregarParametro("@IMP_TOT2", imp2);
+                conexion.baseDatos.AgregarParametro("@IMP_TOT3", imp3);
+                conexion.baseDatos.AgregarParametro("@IMP_TOT4", imp4);
+                conexion.baseDatos.AgregarParametro("@IMPORTE", total);
+                conexion.baseDatos.AgregarParametro("@CVE_DOC", cveDoc);
+                result = conexion.baseDatos.EjecutarSinConsulta("update COMPR{0} set  IMP_TOT1=@IMP_TOT1 ,IMP_TOT2=@IMP_TOT2,IMP_TOT3=@IMP_TOT3,IMP_TOT4=@IMP_TOT4,IMPORTE=@IMPORTE " +
+                   "where CVE_DOC = @CVE_DOC", CommandType.Text) > 0;
+
+
+
+                return recepcion;
+
+            } catch (Exception e)
+            {
+                MessageBox.Show("Error al generar la recepción:  " + e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                partidas = new List<RNPartidasRecepcion>();
+                return recepcion;
+            }
+            
+        }
+
         public RNOrdenRecepcion ObtenerOrdenCompra(string cveOrden, string cveDoc, int folio, int numEmpresa)
         {
             RNOrdenRecepcion recepcion = new RNOrdenRecepcion();
@@ -184,63 +269,7 @@ namespace Negocio
         }
 
 
-        public static int RegistrarEnlace(int Reg_ltpd, int cantidad,int numEmpresa)
-        {
-            RNConexion conexion = new RNConexion(numEmpresa);
-            conexion.baseDatos.AbrirConexion();
-            conexion.baseDatos.LimpiarParametros();
-            int indice =RNRecepcion.ObtenerIndice(67, numEmpresa);
-            conexion.baseDatos.AgregarParametro("@E_LTPD", indice);
-            conexion.baseDatos.AgregarParametro("@REG_LTPD", Reg_ltpd);
-            conexion.baseDatos.AgregarParametro("@CANTIDAD", cantidad);
-            conexion.baseDatos.AgregarParametro("@PXRS", cantidad);
-            var result = conexion.baseDatos.EjecutarSinConsulta(" INSERT INTO ENLACE_LTPD{0} (E_LTPD,REG_LTPD,CANTIDAD,PXRS) " +
-                    "VALUES (@E_LTPD,@REG_LTPD,@CANTIDAD,@PXRS) ", CommandType.Text) > 0;
-            return indice;
-        }
 
-        public static int RegistrarMovInve(RNPartidasRecepcion partida,RNOrdenRecepcion orden,int reg_ltpd ,int numEmpresa)
-        {
-            RNConexion conexion = new RNConexion(numEmpresa);
-            conexion.baseDatos.AbrirConexion();
-            conexion.baseDatos.LimpiarParametros();
-            int existencias = RNRecepcion.ObtenerExistencias(partida.CVE_ART, partida.NUM_ALM, numEmpresa);
-            int indice = RNRecepcion.ObtenerIndice(44, numEmpresa);
-            conexion.baseDatos.AgregarParametro("@CVE_ART",partida.CVE_ART);
-            conexion.baseDatos.AgregarParametro("@ALMACEN",partida.NUM_ALM);
-            conexion.baseDatos.AgregarParametro("@NUM_MOV", indice);
-            conexion.baseDatos.AgregarParametro("@CVE_CPTO",1);
-            conexion.baseDatos.AgregarParametro("@FECHA_DOCU",orden.FECHA_DOC);
-            conexion.baseDatos.AgregarParametro("@TIPO_DOC",orden.TIP_DOC);
-            conexion.baseDatos.AgregarParametro("@REFER",orden.CVE_DOC);
-            conexion.baseDatos.AgregarParametro("@CLAVE_CLPV",orden.CVE_CLPV);
-            conexion.baseDatos.AgregarParametro("@VEND",null);
-            conexion.baseDatos.AgregarParametro("@CANT",partida.CANT);
-            conexion.baseDatos.AgregarParametro("@CANT_COST",partida.CANT);
-            conexion.baseDatos.AgregarParametro("@PRECIO",partida.PREC);
-            conexion.baseDatos.AgregarParametro("@COSTO",partida.COST);
-            conexion.baseDatos.AgregarParametro("@AFEC_COI",null);
-            conexion.baseDatos.AgregarParametro("@CVE_OBS",null);
-            conexion.baseDatos.AgregarParametro("@REG_SERIE",partida.REG_SERIE);
-            conexion.baseDatos.AgregarParametro("@UNI_VENTA",partida.UNI_VENTA);
-            conexion.baseDatos.AgregarParametro("@E_LTPD", reg_ltpd);
-            conexion.baseDatos.AgregarParametro("@EXIST_G",partida.CANT+ existencias);//revisar la suma de las existencias
-            conexion.baseDatos.AgregarParametro("@EXISTENCIA", partida.CANT+ existencias);
-            conexion.baseDatos.AgregarParametro("@TIPO_PROD",partida.TIPO_PROD);
-            conexion.baseDatos.AgregarParametro("@FACTOR_CON",partida.FACTCONV);
-            conexion.baseDatos.AgregarParametro("@FECHAELAB",orden.FECHAELAB);
-            conexion.baseDatos.AgregarParametro("@CTLPOL",orden.CTLPOL);
-            conexion.baseDatos.AgregarParametro("@CVE_FOLIO",orden.FOLIO);
-            conexion.baseDatos.AgregarParametro("@SIGNO",1);
-            conexion.baseDatos.AgregarParametro("@COSTEADO","S");
-            conexion.baseDatos.AgregarParametro("@COSTO_PROM_INI",partida.COST);
-            conexion.baseDatos.AgregarParametro("@COSTO_PROM_FIN", partida.COST);
-            conexion.baseDatos.AgregarParametro("@COSTO_PROM_GRAL", partida.COST);
-            conexion.baseDatos.AgregarParametro("@DESDE_INVE","N");
-            conexion.baseDatos.AgregarParametro("@MOV_ENLAZADO",0);
-            var result = conexion.baseDatos.EjecutarSinConsulta(" INSERT INTO MINVE{0} (CVE_ART,ALMACEN,NUM_MOV,CVE_CPTO,FECHA_DOCU,TIPO_DOC,REFER,CLAVE_CLPV,VEND,CANT,CANT_COST,PRECIO,COSTO,AFEC_COI,CVE_OBS,REG_SERIE,UNI_VENTA,E_LTPD,EXIST_G,EXISTENCIA,TIPO_PROD,FACTOR_CON,FECHAELAB,CTLPOL,CVE_FOLIO,SIGNO,COSTEADO,COSTO_PROM_INI,COSTO_PROM_FIN,COSTO_PROM_GRAL,DESDE_INVE,MOV_ENLAZADO) " +
-                    "VALUES (@CVE_ART,@ALMACEN,@NUM_MOV,@CVE_CPTO,@FECHA_DOCU,@TIPO_DOC,@REFER,@CLAVE_CLPV,@VEND,@CANT,@CANT_COST,@PRECIO,@COSTO,@AFEC_COI,@CVE_OBS,@REG_SERIE,@UNI_VENTA,@E_LTPD,@EXIST_G,@EXISTENCIA,@TIPO_PROD,@FACTOR_CON,@FECHAELAB,@CTLPOL,@CVE_FOLIO,@SIGNO,@COSTEADO,@COSTO_PROM_INI,@COSTO_PROM_FIN,@COSTO_PROM_GRAL,@DESDE_INVE,@MOV_ENLAZADO) ", CommandType.Text) > 0;
-            return indice;
-        }
+
     }
 }

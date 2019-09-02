@@ -35,7 +35,7 @@
             this.btnCerrarSesion = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnVentas = new System.Windows.Forms.Button();
             this.btnCompras = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -65,7 +65,7 @@
             this.PanelConf.Controls.Add(this.btnCerrarSesion);
             this.PanelConf.Controls.Add(this.button4);
             this.PanelConf.Controls.Add(this.button3);
-            this.PanelConf.Controls.Add(this.button2);
+            this.PanelConf.Controls.Add(this.btnVentas);
             this.PanelConf.Controls.Add(this.btnCompras);
             this.PanelConf.Dock = System.Windows.Forms.DockStyle.Left;
             this.PanelConf.Location = new System.Drawing.Point(0, 0);
@@ -92,9 +92,9 @@
             this.Configuracion.ForeColor = System.Drawing.Color.White;
             this.Configuracion.Image = ((System.Drawing.Image)(resources.GetObject("Configuracion.Image")));
             this.Configuracion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Configuracion.Location = new System.Drawing.Point(0, 309);
+            this.Configuracion.Location = new System.Drawing.Point(0, 470);
             this.Configuracion.Name = "Configuracion";
-            this.Configuracion.Size = new System.Drawing.Size(250, 50);
+            this.Configuracion.Size = new System.Drawing.Size(250, 60);
             this.Configuracion.TabIndex = 4;
             this.Configuracion.Text = "Configuración";
             this.Configuracion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -125,9 +125,9 @@
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(0, 259);
+            this.button4.Location = new System.Drawing.Point(0, 280);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(250, 50);
+            this.button4.Size = new System.Drawing.Size(250, 60);
             this.button4.TabIndex = 3;
             this.button4.Text = "button4";
             this.button4.UseVisualStyleBackColor = true;
@@ -140,28 +140,32 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(0, 209);
+            this.button3.Location = new System.Drawing.Point(0, 220);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(250, 50);
+            this.button3.Size = new System.Drawing.Size(250, 60);
             this.button3.TabIndex = 2;
             this.button3.Text = "button3";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Visible = false;
             // 
-            // button2
+            // btnVentas
             // 
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(0, 159);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(250, 50);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Visible = false;
+            this.btnVentas.FlatAppearance.BorderSize = 0;
+            this.btnVentas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnVentas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVentas.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVentas.ForeColor = System.Drawing.Color.White;
+            this.btnVentas.Image = ((System.Drawing.Image)(resources.GetObject("btnVentas.Image")));
+            this.btnVentas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVentas.Location = new System.Drawing.Point(0, 160);
+            this.btnVentas.Name = "btnVentas";
+            this.btnVentas.Size = new System.Drawing.Size(250, 60);
+            this.btnVentas.TabIndex = 0;
+            this.btnVentas.Text = "Salida de Mercancia";
+            this.btnVentas.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnVentas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnVentas.UseVisualStyleBackColor = true;
+            this.btnVentas.Click += new System.EventHandler(this.BtnVentas_Click);
             // 
             // btnCompras
             // 
@@ -330,8 +334,7 @@
         private System.Windows.Forms.Panel PanelConf;
         private System.Windows.Forms.Button Configuracion;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnVentas;
         private System.Windows.Forms.Button btnCompras;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -344,5 +347,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Button btnCerrarSesion;
+        private System.Windows.Forms.Button button3;
     }
 }

@@ -91,20 +91,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Parametros.cs" />
+    <Compile Include="RNCliente.cs" />
     <Compile Include="RNCodigo.cs" />
     <Compile Include="RNCompra.cs" />
     <Compile Include="RNConexion.cs" />
     <Compile Include="RNConfiguracion.cs" />
+    <Compile Include="RNLbInventory.cs" />
     <Compile Include="RNOrdenRecepcion.cs" />
+    <Compile Include="RNOrdenRemision.cs" />
     <Compile Include="RNPartidaCompra.cs" />
     <Compile Include="RNPartidasRecepcion.cs" />
+    <Compile Include="RNPartidasRemision.cs" />
+    <Compile Include="RNPartidaVenta.cs" />
     <Compile Include="RNPedimento.cs" />
     <Compile Include="RNPerfil.cs" />
+    <Compile Include="RNProducto.cs" />
+    <Compile Include="RNProveedor.cs" />
     <Compile Include="RNRecepcion.cs" />
+    <Compile Include="RNRemision.cs" />
     <Compile Include="RNReporteCompra.cs" />
     <Compile Include="RNTipoconexion.cs" />
     <Compile Include="RNUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RNVenta.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Interbike.Apartados\Umbrella.WEB\Umbrella.WEB.csproj">

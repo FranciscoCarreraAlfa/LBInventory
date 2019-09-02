@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 using Datos;
 using System.Windows.Forms;
 using System.Data;
-
+using Umbrella.Aspel.Sae.Negocio;
+using Umbrella.Aspel.Sae.Datos;
+using Umbrella.Aspel.Sae.Datos.Entidades;
+using static Negocio.RNRecepcion;
 
 namespace Negocio
 {
-    class RNPartidasRecepcion
+    public class RNPartidasRecepcion
     {
         public string CVE_DOC { get; set; }
         public int NUM_PAR { get; set; }
@@ -37,7 +40,7 @@ namespace Negocio
         public string UNI_VENTA   { get; set; }
         public string TIPO_ELEM   { get; set; }
         public string TIPO_PROD   { get; set; }
-        public int CVE_OBS     { get; set; }
+        public int? CVE_OBS     { get; set; }
         public int E_LTPD      { get; set; }
         public int REG_SERIE   { get; set; }
         public decimal FACTCONV    { get; set; }
@@ -50,8 +53,8 @@ namespace Negocio
         public int APL_MAN_IMP { get; set; }
         public decimal CUOTA_IEPS  { get; set; }
         public string APL_MAN_IEPS{ get; set; }
-        public decimal MTO_PORC    { get; set; }
-        public decimal MTO_CUOTA   { get; set; }
+        public decimal? MTO_PORC    { get; set; }
+        public decimal? MTO_CUOTA   { get; set; }
         public int CVE_ESQ     { get; set; }
         public string DESCR_ART   { get; set; }
 
@@ -111,10 +114,7 @@ namespace Negocio
                         MTO_CUOTA = Convert.ToDecimal(a["MTO_CUOTA"]),
                         CVE_ESQ = Convert.ToInt32(a["CVE_ESQ"]),
                         DESCR_ART = a["DESCR_ART"].ToString()
-
-
                     }));
-
                 }
                 // generar metodo para insertar las partidas
                 InsertarPartidas(partidas,numEmpresa);
@@ -183,6 +183,93 @@ namespace Negocio
                 result = conexion.baseDatos.EjecutarSinConsulta("insert into PAR_COMPR{0} (CVE_DOC,NUM_PAR,CVE_ART,CANT,PXR,PREC,COST,IMPU1,IMPU2,IMPU3,IMPU4,IMP1APLA,IMP2APLA,IMP3APLA,IMP4APLA,TOTIMP1,TOTIMP2,TOTIMP3,TOTIMP4,DESCU,ACT_INV,TIP_CAM,UNI_VENTA,TIPO_ELEM,TIPO_PROD,CVE_OBS,E_LTPD,REG_SERIE,FACTCONV,COST_DEV,NUM_ALM,MINDIRECTO,NUM_MOV,TOT_PARTIDA,MAN_IEPS,APL_MAN_IMP,CUOTA_IEPS,APL_MAN_IEPS,MTO_PORC,MTO_CUOTA,CVE_ESQ,DESCR_ART) values " +
                     "(@CVE_DOC,@NUM_PAR,@CVE_ART,@CANT,@PXR,@PREC,@COST,@IMPU1,@IMPU2,@IMPU3,@IMPU4,@IMP1APLA,@IMP2APLA,@IMP3APLA,@IMP4APLA,@TOTIMP1,@TOTIMP2,@TOTIMP3,@TOTIMP4,@DESCU,@ACT_INV,@TIP_CAM,@UNI_VENTA,@TIPO_ELEM,@TIPO_PROD,@CVE_OBS,@E_LTPD,@REG_SERIE,@FACTCONV,@COST_DEV,@NUM_ALM,@MINDIRECTO,@NUM_MOV,@TOT_PARTIDA,@MAN_IEPS,@APL_MAN_IMP,@CUOTA_IEPS,@APL_MAN_IEPS,@MTO_PORC,@MTO_CUOTA,@CVE_ESQ,@DESCR_ART)") > 0;
             }
+            return result;
+        }
+
+        public bool InsertarPartidas(List<RNPartidasRecepcion>  partidas,string cveDoc,int folio, List<Lotes> lotes, int numEmpresa, out decimal cant_total, out decimal imp1, out decimal imp2, out decimal imp3, out decimal imp4, out decimal total, out decimal desc, out decimal descind, out decimal desfin)
+        {
+            cant_total = 0;
+            imp1 = 0;
+            imp2 = 0;
+            imp3 = 0;
+            imp4 = 0;
+            total = 0;
+            desc = 0;
+            descind = 0;
+            desfin = 0;
+            RNConexion conexion = new RNConexion(numEmpresa);
+            conexion.baseDatos.AbrirConexion();
+            bool result = false;
+            foreach (var p in partidas)
+            {
+                RNProducto prod = RNProducto.ObtenerProductoPorClave(numEmpresa,p.CVE_ART);
+                decimal precio = RNProducto.ObtenerPrecioProducto(p.CVE_ART,1,numEmpresa);
+                decimal IMPU1 = 0.0M;
+                decimal IMPU2 = 0.0M;
+                decimal IMPU3 = 0.0M;
+                decimal IMPU4 = 0.0M;
+                int IMP1APLA = 0;
+                int IMP2APLA = 0;
+                int IMP3APLA = 0;
+                int IMP4APLA = 0;
+                if (prod.CVE_ESQIMPU.Value > 0 && prod.CVE_ESQIMPU != null)
+                RNProducto.ObtenerImpuestos(p.CVE_ART,prod.CVE_ESQIMPU.Value, numEmpresa,out IMPU1,out IMPU2, out IMPU3, out IMPU4, out IMP1APLA, out IMP2APLA,out IMP3APLA, out IMP4APLA);
+                cant_total += (prod.ULT_COSTO.Value * p.CANT);
+                imp1 += prod.ULT_COSTO.Value * (IMPU1 / 100)* p.CANT;
+                imp2 += prod.ULT_COSTO.Value * (IMPU2 / 100)* p.CANT;
+                imp3 += prod.ULT_COSTO.Value * (IMPU3 / 100)* p.CANT;
+                imp4 += prod.ULT_COSTO.Value * (IMPU4 / 100) * p.CANT;
+                total += (prod.ULT_COSTO.Value * p.CANT)+imp1+imp2+imp3+imp4;
+                desc += 0;
+                descind += 0;
+                desfin += 0;
+                conexion.baseDatos.LimpiarParametros();                                                                        
+                conexion.baseDatos.AgregarParametro("@CVE_DOC", p.CVE_DOC);                                            
+                conexion.baseDatos.AgregarParametro("@NUM_PAR", p.NUM_PAR);                                 
+                conexion.baseDatos.AgregarParametro("@CVE_ART", p.CVE_ART);
+                conexion.baseDatos.AgregarParametro("@CANT", p.CANT);
+                conexion.baseDatos.AgregarParametro("@PXR", p.PXR);
+                conexion.baseDatos.AgregarParametro("@PREC", precio);
+                conexion.baseDatos.AgregarParametro("@COST",prod.ULT_COSTO);
+                conexion.baseDatos.AgregarParametro("@IMPU1",IMPU1);
+                conexion.baseDatos.AgregarParametro("@IMPU2",IMPU2 );
+                conexion.baseDatos.AgregarParametro("@IMPU3",IMPU3 );
+                conexion.baseDatos.AgregarParametro("@IMPU4",IMPU4 );
+                conexion.baseDatos.AgregarParametro("@IMP1APLA", IMP1APLA);
+                conexion.baseDatos.AgregarParametro("@IMP2APLA", IMP2APLA);
+                conexion.baseDatos.AgregarParametro("@IMP3APLA", IMP3APLA);
+                conexion.baseDatos.AgregarParametro("@IMP4APLA", IMP4APLA);
+                conexion.baseDatos.AgregarParametro("@TOTIMP2", IMP2APLA==1?(prod.ULT_COSTO*(IMPU1/100)) * p.CANT : 0.00M);
+                conexion.baseDatos.AgregarParametro("@TOTIMP3", IMP3APLA==1?(prod.ULT_COSTO*(IMPU2/100)) * p.CANT : 0.00M);
+                conexion.baseDatos.AgregarParametro("@TOTIMP4", IMP4APLA==1?(prod.ULT_COSTO*(IMPU3/100)) * p.CANT : 0.00M);
+                conexion.baseDatos.AgregarParametro("@TOTIMP1", IMP1APLA==1?(prod.ULT_COSTO*(IMPU4/100)) * p.CANT : 0.00M);
+                conexion.baseDatos.AgregarParametro("@DESCU", p.DESCU);
+                conexion.baseDatos.AgregarParametro("@ACT_INV", p.ACT_INV);
+                conexion.baseDatos.AgregarParametro("@TIP_CAM", p.TIP_CAM );
+                conexion.baseDatos.AgregarParametro("@UNI_VENTA", p.UNI_VENTA);
+                conexion.baseDatos.AgregarParametro("@TIPO_ELEM", p.TIPO_ELEM);
+                conexion.baseDatos.AgregarParametro("@TIPO_PROD", p.TIPO_PROD);
+                conexion.baseDatos.AgregarParametro("@CVE_OBS", p.CVE_OBS);
+                conexion.baseDatos.AgregarParametro("@E_LTPD", RNLbInventory.RegistrarEnlace(lotes.FirstOrDefault(x => x.partida == p.NUM_PAR).reg_ltpd, lotes.FirstOrDefault(x => x.partida == p.NUM_PAR).contador, numEmpresa));
+                conexion.baseDatos.AgregarParametro("@REG_SERIE", p.REG_SERIE);
+                conexion.baseDatos.AgregarParametro("@FACTCONV", p.FACTCONV);
+                conexion.baseDatos.AgregarParametro("@COST_DEV", prod.ULT_COSTO);
+                conexion.baseDatos.AgregarParametro("@NUM_ALM", p.NUM_ALM);
+                conexion.baseDatos.AgregarParametro("@MINDIRECTO", p.MINDIRECTO);
+                conexion.baseDatos.AgregarParametro("@NUM_MOV", RNLbInventory.RegistrarMovInveRemision(p,RNOrdenRemision.ObtenerRemision(  cveDoc,numEmpresa), lotes.FirstOrDefault(x => x.partida == p.NUM_PAR).reg_ltpd, 1, numEmpresa));
+                conexion.baseDatos.AgregarParametro("@TOT_PARTIDA",prod.ULT_COSTO * p.CANT);
+                conexion.baseDatos.AgregarParametro("@MAN_IEPS", p.MAN_IEPS);
+                conexion.baseDatos.AgregarParametro("@APL_MAN_IMP", p.APL_MAN_IMP);
+                conexion.baseDatos.AgregarParametro("@CUOTA_IEPS", p.CUOTA_IEPS);
+                conexion.baseDatos.AgregarParametro("@APL_MAN_IEPS", p.APL_MAN_IEPS);
+                conexion.baseDatos.AgregarParametro("@MTO_PORC", p.MTO_PORC);
+                conexion.baseDatos.AgregarParametro("@MTO_CUOTA", p.MTO_CUOTA);
+                conexion.baseDatos.AgregarParametro("@CVE_ESQ", p.CVE_ESQ);
+                conexion.baseDatos.AgregarParametro("@DESCR_ART", p.DESCR_ART);
+                result = conexion.baseDatos.EjecutarSinConsulta("insert into PAR_COMPR{0} (CVE_DOC,NUM_PAR,CVE_ART,CANT,PXR,PREC,COST,IMPU1,IMPU2,IMPU3,IMPU4,IMP1APLA,IMP2APLA,IMP3APLA,IMP4APLA,TOTIMP1,TOTIMP2,TOTIMP3,TOTIMP4,DESCU,ACT_INV,TIP_CAM,UNI_VENTA,TIPO_ELEM,TIPO_PROD,CVE_OBS,E_LTPD,REG_SERIE,FACTCONV,COST_DEV,NUM_ALM,MINDIRECTO,NUM_MOV,TOT_PARTIDA,MAN_IEPS,APL_MAN_IMP,CUOTA_IEPS,APL_MAN_IEPS,MTO_PORC,MTO_CUOTA,CVE_ESQ,DESCR_ART) values " +
+                    "(@CVE_DOC,@NUM_PAR,@CVE_ART,@CANT,@PXR,@PREC,@COST,@IMPU1,@IMPU2,@IMPU3,@IMPU4,@IMP1APLA,@IMP2APLA,@IMP3APLA,@IMP4APLA,@TOTIMP1,@TOTIMP2,@TOTIMP3,@TOTIMP4,@DESCU,@ACT_INV,@TIP_CAM,@UNI_VENTA,@TIPO_ELEM,@TIPO_PROD,@CVE_OBS,@E_LTPD,@REG_SERIE,@FACTCONV,@COST_DEV,@NUM_ALM,@MINDIRECTO,@NUM_MOV,@TOT_PARTIDA,@MAN_IEPS,@APL_MAN_IMP,@CUOTA_IEPS,@APL_MAN_IEPS,@MTO_PORC,@MTO_CUOTA,@CVE_ESQ,@DESCR_ART)") > 0;
+            }
+            bool abn = InsertarPartidasCL(partidas,numEmpresa);
             return result;
         }
 

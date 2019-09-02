@@ -50,7 +50,7 @@ namespace LBInventory
         {
             // se crea un nuevo form para el form modal
             codigosEscaneados = new List<string>();
-            FormOrdenes ordenes = new FormOrdenes() ;
+            FormOrdenes ordenes = new FormOrdenes("Compras") ;
             ordenes.Enviar += new FormOrdenes.EnviarOrden(Ordenes_Enviar);
             ordenes.Owner = this;
             ordenes.ShowDialog();
@@ -120,15 +120,33 @@ namespace LBInventory
 
         private void BtnGenTRecepcion_Click(object sender, EventArgs e)
         {
-            // cambiar por una pantalla mas acorde con el desarrollo
-            //  se crea un nuevo form para el form modal
-            FormPedimento pedimento = new FormPedimento();
-            pedimento.Enviar += new FormPedimento.EnviarPedimento(Pedimento_Enviar);
-            pedimento.Owner = this;
-            pedimento.ShowDialog();
-            // string pedimento = Microsoft.VisualBasic.Interaction.InputBox("Ingresa el Pedimento: ","Pedimento","",300,300);
-            RNRecepcion.GenerarRecepcion(dataGridCompras, cveOrden, 2,this.pedimento);
-            ClearForm();
+            bool msgVacio = false;
+            foreach (DataGridViewRow dgvRenglon in dataGridCompras.Rows)
+            {
+                if (dgvRenglon.Cells[3].Value.ToString()!=dgvRenglon.Cells[7].Value.ToString())
+                {
+                    msgVacio = true;
+                }
+            }
+            if (msgVacio)
+            {
+                MessageBox.Show("Error al validar las existencias, valida por favor tu información", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                // cambiar por una pantalla mas acorde con el desarrollo
+                //  se crea un nuevo form para el form modal
+                FormPedimento pedimento = new FormPedimento();
+                pedimento.Enviar += new FormPedimento.EnviarPedimento(Pedimento_Enviar);
+                pedimento.Owner = this;
+                pedimento.ShowDialog();
+                // obtener el numero de la empresa importadora;
+                int nunEmpresa = RNLbInventory.ObtenerImportadora().NumEmpresa;
+                RNRecepcion.GenerarRecepcion(dataGridCompras, cveOrden, nunEmpresa, this.pedimento);
+                ClearForm();
+            }
+
+
 
         }
 

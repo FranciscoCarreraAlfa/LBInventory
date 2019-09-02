@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using LBInventory.Remision;
 
 namespace LBInventory
 {
@@ -55,7 +56,7 @@ namespace LBInventory
             else
             {
 
-                //si la Formulario/instancia existe, lo traemos a frente
+                //si el Formulario/instancia existe, lo traemos a frente
                 formulario.BringToFront();
 
                 //Si la instancia esta minimizada mostramos
@@ -113,6 +114,11 @@ namespace LBInventory
         private void Panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void BtnVentas_Click(object sender, EventArgs e)
+        {
+            AbrirFormEnPanel<FormSalidaMercancia>();
         }
 
         private void Minimizar_Click(object sender, EventArgs e)

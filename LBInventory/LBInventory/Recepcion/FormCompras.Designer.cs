@@ -165,6 +165,7 @@
             this.btnGenTRecepcion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGenTRecepcion.Enabled = false;
             this.btnGenTRecepcion.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenTRecepcion.Image = ((System.Drawing.Image)(resources.GetObject("btnGenTRecepcion.Image")));
             this.btnGenTRecepcion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnGenTRecepcion.Location = new System.Drawing.Point(697, 598);
             this.btnGenTRecepcion.Name = "btnGenTRecepcion";

@@ -15,16 +15,29 @@ namespace LBInventory
     {
         public delegate void EnviarOrden(string cve);
         public event EnviarOrden Enviar;
-
-        public FormOrdenes()
+        private string etiqueta = "";
+        public FormOrdenes(string etiqueta)
         {
             InitializeComponent();
+            
+            this.etiqueta = etiqueta;
         }
 
         private void FormPartidas_Load(object sender, EventArgs e)
         {
-            RNCompra.ObtenerCompras(dataGridOrdenes);
-            lblPartida.Text = "Compras";
+            
+            if (etiqueta == "Compras")
+            {
+                lblPartida.Text = "Ordenes de Compra";
+                RNCompra.ObtenerCompras(dataGridOrdenes);
+            }               
+            else if (etiqueta == "Ventas")
+            {
+                lblPartida.Text = "Ordenes de Venta";
+                RNVenta.ObtenerVentas(dataGridOrdenes);
+            }
+                
+
         }
 
         private void PictureBox1_Click(object sender, EventArgs e)
