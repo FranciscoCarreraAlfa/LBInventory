@@ -66,8 +66,8 @@ namespace Negocio
                 conexion.baseDatos.LimpiarParametros();
                 conexion.baseDatos.AgregarParametro("@TIP_DOC", recepcion.TIP_DOC);
                 conexion.baseDatos.AgregarParametro("@CVE_DOC",recepcion.CVE_DOC);
-                conexion.baseDatos.AgregarParametro("@CVE_CLPV",recepcion.CVE_CLPV      );
-                conexion.baseDatos.AgregarParametro("@STATUS",recepcion.STATUS        );
+                conexion.baseDatos.AgregarParametro("@CVE_CLPV",recepcion.CVE_CLPV);
+                conexion.baseDatos.AgregarParametro("@STATUS",recepcion.STATUS);
                 conexion.baseDatos.AgregarParametro("@SU_REFER",recepcion.SU_REFER);
                 conexion.baseDatos.AgregarParametro("@FECHA_DOC",recepcion.FECHA_DOC);
                 conexion.baseDatos.AgregarParametro("@FECHA_REC",recepcion.FECHA_REC);
@@ -111,7 +111,7 @@ namespace Negocio
                 // agregar los campos libres 
                 conexion.baseDatos.LimpiarParametros();
                 conexion.baseDatos.AgregarParametro("@CVE_DOC", recepcion.CVE_DOC);
-                var resultcl = conexion.baseDatos.EjecutarSinConsulta(" insert into COMPR_CLIB{0}(CLAVE_DOC) values(@CVE_DOC); ", CommandType.Text) >0;
+                var resultcl = conexion.baseDatos.EjecutarSinConsulta(" insert into COMPR_CLIB{0} (CLAVE_DOC) values(@CVE_DOC); ", CommandType.Text) >0;
                 //agregar las partidas
                 partidas = new RNPartidasRecepcion().GenerarPartidas(cveOrden, cveDoc, folio, numEmpresa);
                 return recepcion;

@@ -88,7 +88,7 @@ namespace LBInventory
             }
             if (msgVacio)
             {
-                MessageBox.Show("Existen Productos sin condigo corto, valida por favor tu información", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Existen Productos sin codigo corto, valida por favor tu información", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
